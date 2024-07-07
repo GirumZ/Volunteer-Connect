@@ -13,13 +13,12 @@ Base = declarative_base()
 
 class BaseModel(Base):
     """ BaseModel class"""
-
-    __tablename__ = 'BaseModel'
-
+    __abstract__ = True
+    
     id = Column(String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow)
-
+    
     def __str__(self):
         """ String representatin of the BaseModel instances"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
