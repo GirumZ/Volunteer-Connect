@@ -24,6 +24,7 @@ header{
 
 .header-logo h2{
     padding-left: 25px;
+    color: brown;
 }
 
 .header-navbar{
@@ -47,8 +48,41 @@ header{
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    color: brown;
 }
 
 .signup-img{
     padding: 0 20px;
+}
+
+/*----------FOOTER-STYLES----------*/
+
+footer{
+    height: 200px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer-icons a{
+    margin: 10px;
+}
+
+.footer-links a{
+    text-decoration: none;
+    color: black;
+}
+
+.footer-links li:not(:last-child)::after{
+    content: "|";
+    margin-left: 10px;
+    color: black;
+}
+
+.footer-links ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
 }
