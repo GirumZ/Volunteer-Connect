@@ -1,0 +1,117 @@
+/*Poppins font*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*Dancing Scrpt font*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+/*Pacifico font*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    list-style: none;
+}
+
+body{
+    height: 100%;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex: 1;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 90px;
+    background-color: antiquewhite;
+}
+
+.header-logo{
+    width: 300px;
+}
+
+.header-logo h2{
+    padding-left: 25px;
+    color: orangered;
+    font-family: Dancing Script;
+    font-weight: 700;
+    font-size: xx-large;
+}
+
+.header-navbar{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.header-nav ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+.header-signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: orangered;
+}
+
+.header-signup h3{
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+.signup-img{
+    padding: 0 20px;
+}
+
+/*----------FOOTER-STYLES----------*/
+
+footer{
+    height: 200px;
+    background-color: rgb(4, 115, 171);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer-icons a{
+    margin: 10px;
+}
+
+.footer-links a{
+    text-decoration: none;
+    color: black;
+}
+
+.footer-links li:not(:last-child)::after{
+    content: "|";
+    margin-left: 10px;
+    color: black
+}
+
+.footer-links ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+.footer-copyright{
+    color: gray;
+}
