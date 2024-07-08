@@ -94,7 +94,8 @@ header{
 
 .search-section h1{
     font-weight: 500;
-    font-size: 30px;
+    font-size: 40px;
+    color: white;
 }
 
 .search-form input{
@@ -108,18 +109,21 @@ header{
 .search-form button{
     height: 38px;
     width: 100px;
+    font-size: 20px;
     border-radius: 15px;
     border: none;
     background-color: orangered;
+    color: white;
 }
 
 .search-section p{
     font-weight: 300;
     font-size: 20px;
+    color: white;
 }
 
 .search-section p a{
-    color: orangered;
+    color: black;
 }
 /*--------OPPORTUNITIES-SECTION----*/
 
@@ -129,14 +133,17 @@ header{
     color: black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    padding-top: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 .opportunities-section h1{
-    font-weight: 400;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 30px;
+    padding-bottom: 20px;
+    color: rgb(4, 115, 171);
 }
 .opportunities-container{
     background-color: white;
@@ -198,6 +205,93 @@ header{
     overflow: hidden;
     text-overflow: ellipsis;    
 }
+
+/*----------CALL-TO-ACTION---------*/
+
+.call-to-action{
+    background-color: rgb(4, 115, 171);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.call-to-action h2{
+    font-weight: 500;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.call-to-action p{
+    width: 50%;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+    color: #ccc;
+}
+
+.call-to-action button{
+    width: 150px;
+    height: 40px;
+    font-size: 20px;
+    background-color: orangered;
+    color: white;
+    border-radius: 25px;
+    border: none;
+}
+
+/*-------ORGANIZATIONS-SECTION-----*/
+.organizations-section{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+}
+.organization-conrainer{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 10px;
+    background-color: white;
+}
+
+.organization-conrainer img{
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+
+}
+
+/*----------COMMUNITY-SECTION------*/
+.community-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.community-img{
+    max-width: 100%;
+    overflow: hidden;
+    text-align: center;
+
+}
+.community-img img{
+    max-width: 100%;
+    height: auto;
+}
+
+.community-section h1{
+    font-weight: 500;
+    font-size: 25px;
+    color: orangered;
+    margin: 20px 0;
+}
+
 /*----------FOOTER-STYLES----------*/
 
 footer{
