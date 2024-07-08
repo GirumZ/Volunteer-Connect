@@ -9,7 +9,7 @@ from datetime import datetime
 import models
 
 
-class User(Base, BaseModel):
+class User(BaseModel):
     """ User class definition"""
 
     __tablename__ = 'users'
