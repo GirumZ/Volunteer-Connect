@@ -24,7 +24,9 @@ def create_app():
     mg.init_app(app, db)
 
     from .routes import user_routes
+    from .routes import volunteer_routes
 
     app.register_blueprint(user_routes.bp)
+    app.register_blueprint(volunteer_routes.bp)
 
     return app
