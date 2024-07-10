@@ -1,14 +1,15 @@
 from datetime import datetime
-from uuid import uuid
+from uuid import uuid4
 from .. import db
 from sqlalchemy.dialects.mysql import JSON
 
+time = '%Y-%m-%dT%H:%M:%S.%f'
 
 class BaseModel(db.Model):
     """ BaseModel class"""
     __abstract__ = True
 
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid4()))
     created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
 
