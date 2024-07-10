@@ -4,6 +4,10 @@ from os import getenv
 import models
 from models.base_model import BaseModel, Base
 from models.user import User
+from models.volunteer import Volunteer
+from models.organization import Organization
+from models.opportunity import Opportunity
+from models.application import Application
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 
