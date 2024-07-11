@@ -1,6 +1,5 @@
 from sqlalchemy import ForeignKey
 from .user import User
-from .base_model import BaseModel
 from .. import db
 
 

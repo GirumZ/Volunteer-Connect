@@ -1,8 +1,8 @@
-from models.user import User
+from .base_model import BaseModel
 from .. import db
 
 
-class Application(User, db.Model):
+class Application(BaseModel, db.Model):
     """Application class"""
     __tablename__ = 'applications'
 

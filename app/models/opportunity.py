@@ -1,8 +1,8 @@
-from models.user import User
+from .base_model import BaseModel
 from .. import db
 
 
-class Opportunity(User, db.Model):
+class Opportunity(BaseModel, db.Model):
     """Opportunity class"""
     __tablename__ = 'opportunities'
 
