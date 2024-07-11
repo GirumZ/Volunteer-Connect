@@ -39,7 +39,19 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         from .models.user import User
-        return User.query.get(str(user_id))
+        from .models.volunteer import Volunteer
+        from .models.organization import Organization
+
+        user = User.query.get(str(user_id))
+        if user:
+            return user
+
+        volunteer = Volunteer.query.get(str(user_id))
+        if volunteer:
+            return volunteer
+        organization = Organization.query.get(str(user_id))
+        if organization:
+            return organization
 
     from .routes import user_routes
     from .routes import volunteer_routes
