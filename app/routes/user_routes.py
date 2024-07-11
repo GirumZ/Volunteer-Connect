@@ -1,11 +1,15 @@
+#!/usr/bin/python3
+"""routes for the user model"""
 from flask import Blueprint, request, jsonify
 from app.models.user import User
 from app import db
+
 
 bp = Blueprint('users', __name__, url_prefix='/users')
 
 @bp.route('/', methods=['POST'])
 def create_user():
+    """Creates new user"""
     data = request.get_json()
     user = User(**data)
     db.session.add(user)
@@ -14,5 +18,31 @@ def create_user():
 
 @bp.route('/', methods=['GET'])
 def get_users():
+    """Returns all the users"""
     users = User.query.all()
     return jsonify([user.to_dict() for user in users])
+
+@bp.route('/<string:id>', methods=['GET'])
+def get_user(id):
+    """Returns specific user using its id"""
+    user = User.query.get_or_404(id)
+    return jsonify(user.to_dict())
+
+@bp.route('/<string:id>', methods=['PUT'])
+def update_user(id):
+    """ Updates specific user using the id"""
+    data = request.get_json()
+    user = User.query.get_or_404(id)
+    for key, value in data.items():
+        setattr(user, key, value)
+    db.session.commit()
+    return jsonify(user.to_dict())
+
+@bp.route('/<string:id>', methods=['DELETE'])
+def delete_user(id):
+    """Deletes a user"""
+    user = User.query.get_or_404(id)
+    db.session.delete(user)
+    db.session.commit()
+    return '', 204
+
