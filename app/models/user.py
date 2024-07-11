@@ -13,7 +13,7 @@ class User(UserMixin, BaseModel, db.Model):
     password = db.Column(db.String(128), nullable=False)
 
     def check_password(self, password):
-        return bycrypt.check_password_hash(self.password_hash, password)
+        return bcrypt.check_password_hash(self.password, password)
 
     def get_id(self):
         return self.id
