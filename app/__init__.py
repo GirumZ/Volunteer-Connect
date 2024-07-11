@@ -25,8 +25,14 @@ def create_app():
 
     from .routes import user_routes
     from .routes import volunteer_routes
+    from .routes import organization_routes
+    from .routes import opportunity_routes
+    from .routes import application_routes
 
     app.register_blueprint(user_routes.bp)
     app.register_blueprint(volunteer_routes.bp)
+    app.register_blueprint(organization_routes.bp)
+    app.register_blueprint(opportunity_routes.bp)
+    app.register_blueprint(application_routes.bp)
 
     return app
