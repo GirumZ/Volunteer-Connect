@@ -129,7 +129,7 @@ header{
 
 .opportunities-section{
     height: 450px;
-    background-color: white;
+    background-color: rgb(230, 242, 243);
     color: black;
     display: flex;
     flex-direction: column;
@@ -142,25 +142,52 @@ header{
 .opportunities-section h1{
     font-weight: 500;
     font-size: 30px;
-    padding-bottom: 20px;
     color: rgb(4, 115, 171);
 }
-.opportunities-container{
-    background-color: white;
-    width: 800px;
-    margin: 15px;
-    flex: 1;
+.opportunities-wrapper{
+    position: relative;
+    width: 80%;
+    max-width: 880px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: start;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.opportunities-container{
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.opportunity-slider{
+    display: flex;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.opportunity-slide{
+    display: flex;
+}
+
+.prev, .next{
+    background-color: transparent;
+    color: rgb(4, 115, 171);
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    display: flex;
 }
 
 .opportunity-card{
-    background-color: rgb(238, 238, 238);
-    width: 30%;
-    height: 100%;
-    border-radius: 50px;
+    background-color: white;
+    height: 350px;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+    min-width: 250px;
+    max-width: 250px;
+    margin: 10px 10px;
 }
 
 .opportunity-img{
@@ -172,17 +199,17 @@ header{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 50px 50px 0 0;
+    border-radius: 30px 30px 0 0;
 }
 
 .opportunity-description{
-    padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
     overflow: hidden;
 }
 
 .opportunity-description h2{
+    color: rgb(4, 115, 171);
     font-weight: 600;
     font-size: 20px;
 }
@@ -200,7 +227,7 @@ header{
 .opportunity-description p{
     font-size: small;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;    
@@ -244,10 +271,38 @@ header{
 /*-------ORGANIZATIONS-SECTION-----*/
 .organizations-section{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     height: 200px;
 }
+.org-wrapper{
+    width: 100%;
+    
+    overflow: hidden;
+    position: relative;
+}
+
+.org-slider-container{
+    display: flex;
+    justify-content: center;
+}
+
+.org-slider{
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
+
+.org-slide{
+    max-width: 120px;
+    margin: 0 10px;
+    text-align: center;
+}
+
+.org-slide img{
+    width: 100%;
+    height: auto;
+}
+
 .organization-conrainer{
     width: 150px;
     height: 150px;
