@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect</title>
+    <link rel="stylesheet" href="styles/signup.css">
+    <script src="https://kit.fontawesome.com/b14251f457.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <div class="header-navbar">
+                <nav class="header-nav">
+                    <ul>
+                        <li><a>Opportunities</a></li>
+                        <li><a>Organization</a></li>
+                        <li><a>About Us</a></li>
+                        <li><a>Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="header-signup">
+                    <h3>Sign In / Register</h3>
+                    <div class="signup-img">
+                        <h2>V</h2>
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+        <main>
+            <div class="signup-container">
+                <h1>Sign Up</h1>
+                <div class="user">
+                    <label for="user-type">I am: </label>
+                    <select id="user-type" onchange="toggleForm()">
+                        <option value="volunteer">A Volunteer</option>
+                        <option value="organization">An Organization</option>
+                    </select>
+                </div>
+                <form id="volunteerForm" name="volunteerForm" class="form-container" action="">
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <label for="first_name"></label>
+                        <input type="text" id="first_name" placeholder="First Name">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <label for="last_name"></label>
+                        <input type="text" id="last_name" placeholder="Last Name">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <label for="email"></label>
+                        <input type="email" placeholder="Email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <label for="password"></label>
+                        <input type="password" placeholder="Password">
+                    </div>
+                    <button>Sign Up</button>
+                </form>
+                <form id="organizationForm" name="organizationForm" class="form-container" action="">
+                    <div class="input-field">
+                        <i class="fa-solid fa-building"></i>
+                        <label for="last_name"></label>
+                        <input type="text" id="org_name" placeholder="Organization Name">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-envelope"></i>
+                        <label for="email"></label>
+                        <input type="email" id="email" placeholder="Email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fa-solid fa-lock"></i>
+                        <label for="password"></label>
+                        <input type="password" id="password" placeholder="Password">
+                    </div>
+                    <button>Sign Up</button>
+                </form>
+                <h3>Already have an account? <a href="signin.html">Sign-In</a></h3>
+            </div>
+            <div class="volunteering-image"></div>
+        </main>
+        <footer>
+            <div class="footer-icons">
+                <a><img src="images/instagram.svg" width="35" height="35"></a>
+                <a><img src="images/facebook.svg" width="35" height="35"></a>
+                <a><img src="images/youtube.svg" width="35" height="35"></a>
+                <a><img src="images/discord.svg" width="35" height="35"></a>
+                <a><img src="images/slack.svg" width="35" height="35"></a>
+                <a><img src="images/linkedin.svg" width="35" height="35"></a>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="">Terms of use</a></li>
+                    <li><a href="">Privacy policy</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy 2024 by Girum Zebene. All right reserved</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function toggleForm() {
+            const userType = document.getElementById('user-type').value;
+            const volunteerForm = document.getElementById('volunteerForm');
+            const organizationForm = document.getElementById('organizationForm');
+    
+            if (userType === 'volunteer') {
+                volunteerForm.classList.add('active');
+                organizationForm.classList.remove('active');
+            } else if (userType === 'organization') {
+                organizationForm.classList.add('active');
+                volunteerForm.classList.remove('active');
+            }    
+        }
+    
+        window.onload = function() {
+            toggleForm();
+        };
+    </script>
+</body>
+
+</html>
