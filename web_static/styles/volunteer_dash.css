@@ -160,7 +160,7 @@ main{
     margin-left: 10px;
 }
 .input-field textarea{
-    width: 300px;
+    width: 60%;
     height: 60px;
 }
 
@@ -177,6 +177,64 @@ main{
 .expandable-section.expanded .section-content{
     max-height: fit-content;
     padding:10px;
+}
+
+
+/*----------APPLICATION-STYLES------*/
+
+.applications-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.application-card{
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    min-height: fit-content;
+    transition: transform 0.3s ease;
+}
+
+.application-card:hover{
+    transform: translateY(-5px);
+}
+
+.application-card.expanded{
+    max-height: fit-content;
+}
+
+.application-card h3{
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.application-details{
+    display: none;
+    margin-top: 10px;
+}
+
+.application-card.expanded .application-details{
+    display: block;
+}
+
+.application-card button{
+    background-color: orangered;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.application-card button:hover{
+    background-color: orange;
 }
 
 /*----------FOOTER-STYLES----------*/

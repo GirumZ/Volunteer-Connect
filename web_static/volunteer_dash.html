@@ -40,7 +40,7 @@
                         <div class="section-content">
                             <form id="volunteerProfileForm" name="volunteerProfileForm" action="">
                                 <div class="input-field">
-                                    <label for="first_name">First Name</label>
+                                    <label :for="first_name">First Name</label>
                                     <input id="first_name" name="first_name" type="text" placeholder="First Name">
                                 </div>
                                 <div class="input-field">
@@ -50,11 +50,9 @@
                                 <div class="input-field">
                                     <label for="gender">Gender</label>
                                     <div>
-                                        
                                         <label><input type="radio" id="male" name="gender" value="male"> Male</label>
                                     </div>
                                     <div>
-                                        
                                         <label><input type="radio" id="female" name="gender" value="female"> Female</label>
                                     </div>
                                 </div>
@@ -65,8 +63,15 @@
                                     <label>Phone Number <input id="phone_number" type="tel" placeholder="Phone Number"></label>
                                 </div>
                                 <div class="input-field">
-                                    <label>Location <input id="location" type="text" placeholder="Location"></label>
+                                    <label for="location">Location</label>
+                                    <select name="location" id="location">
+                                        <option value="Addis Ababa">Addis Ababa</option>
+                                        <option value="Bahir Dar">Bahir Dar</option>
+                                        <option value="Mekele">Mekele</option>
+                                        <option value="Adama">Adama</option>
+                                    </select>
                                 </div>
+                                <hr>
                                 <div class="input-field">
                                     <h4>Select your interests</h4>
                                     <div class="interests-collection">
@@ -82,6 +87,7 @@
                                         <label><input name="interests" type="checkbox"> Technology</label>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="input-field">
                                     <h4>Select your skills</h4>
                                     <div class="skills-collection">
@@ -97,6 +103,7 @@
                                         <label><input name="skills" type="checkbox"> Manual Labour skills</label>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="input-field">
                                     <h4>Availability</h4>
                                     <div>
@@ -111,6 +118,7 @@
                                     </div>
                                     
                                 </div>
+                                <hr>
                                 <div class="input-field">
                                     <h4>Bio</h4>
                                     <textarea id="first_name" placeholder="Short description about you(50 words max)"></textarea>
@@ -125,18 +133,47 @@
                         <i class="fa-solid fa-briefcase"></i>
                         <h2 class="title">Applications</h2>
                     </div>
-                        <div class="section-content">
-                            <p>the content goes here</p>
+                    <div class="section-content">
+                        <div class="applications-container">
+                            <div class="application-card">
+                                <h3>Application Title</h3>
+                                <p><strong>Organization Name</strong></p>
+                                <p><strong>Date Applied</strong></p>
+                                <button class="view-details-btn">View Details</button>
+                                <div class="application-details">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
+                                </div>
+                            </div>
+                            <div class="application-card">
+                                <h3>Application Title</h3>
+                                <p><strong>Organization Name</strong></p>
+                                <p><strong>Date Applied</strong></p>
+                                <button class="view-details-btn">View Details</button>
+                                <div class="application-details">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
+                                </div>
+                            </div>
+                            <div class="application-card">
+                                <h3>Application Title</h3>
+                                <p><strong>Organization Name</strong></p>
+                                <p><strong>Date Applied</strong></p>
+                                <button class="view-details-btn">View Details</button>
+                                <div class="application-details">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                 </section>
                 <section class="expandable-section" id="achievements">
                     <div class="section-title">
                         <i class="fa-solid fa-trophy"></i>
                         <h2 class="title">Achievements</h2>
                     </div>
-                        <div class="section-content">
-                            <p>the content goes here</p>
-                        </div>
+                    <div class="section-content">
+                        <p>the content goes here</p>
+                    </div>
+                        
                 </section>
             </div>
         </main>
@@ -174,6 +211,23 @@
                             otherSection.classList.remove('expanded');
                         }
                     });
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const appliclatioinCard = event.target.closest('.application-card');
+                    appliclatioinCard.classList.toggle('expanded');
+
+                    if (appliclatioinCard.classList.contains('expanded')) {
+                        event.target.textContent = 'Veiw Less';
+                    } else {
+                        event.target.textContent = 'View Details';
+                    }
                 });
             });
         });
