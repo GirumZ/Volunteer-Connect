@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect</title>
+    <link rel="stylesheet" href="styles/volunteer_dash.css">
+    <script src="https://kit.fontawesome.com/b14251f457.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <div class="header-navbar">
+                <nav class="header-nav">
+                    <ul>
+                        <li><a>Opportunities</a></li>
+                        <li><a>Organization</a></li>
+                        <li><a>About Us</a></li>
+                        <li><a>Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="header-signup">
+                    <h3><a href="signin.html">Sign In / Register</a></h3>
+                    <div class="signup-img">
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+        <main>
+            <div class="dash-container">
+                <section class="expandable-section" id="volunteer-profile">
+                    <div class="section-title">
+                        <i class="fa-solid fa-user"></i>
+                        <h2 class="title"> My Profile</h2>
+                    </div>
+                        <div class="section-content">
+                            <form id="volunteerProfileForm" name="volunteerProfileForm" action="">
+                                <div class="input-field">
+                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" name="first_name" type="text" placeholder="First Name">
+                                </div>
+                                <div class="input-field">
+                                    <label for="last_name">Last Name</label>
+                                    <input id="last_name" type="text" placeholder="Last Name">
+                                </div>
+                                <div class="input-field">
+                                    <label for="gender">Gender</label>
+                                    <div>
+                                        
+                                        <label><input type="radio" id="male" name="gender" value="male"> Male</label>
+                                    </div>
+                                    <div>
+                                        
+                                        <label><input type="radio" id="female" name="gender" value="female"> Female</label>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label>Date of Birth <input id="date_of_birth" type="date" placeholder="First Name"></label>
+                                </div>
+                                <div class="input-field">
+                                    <label>Phone Number <input id="phone_number" type="tel" placeholder="Phone Number"></label>
+                                </div>
+                                <div class="input-field">
+                                    <label>Location <input id="location" type="text" placeholder="Location"></label>
+                                </div>
+                                <div class="input-field">
+                                    <h4>Select your interests</h4>
+                                    <div class="interests-collection">
+                                        <label><input name="interests" type="checkbox"> Education</label>
+                                        <label><input name="interests" type="checkbox"> Healthcare</label>
+                                        <label><input name="interests" type="checkbox"> Environmental Conservation</label>
+                                        <label><input name="interests" type="checkbox"> Animal Welfare</label>
+                                        <label><input name="interests" type="checkbox"> sports</label>
+                                        <label><input name="interests" type="checkbox"> Youth Development</label>
+                                        <label><input name="interests" type="checkbox"> Arts and Culture</label>
+                                        <label><input name="interests" type="checkbox"> Disaster Relief</label>
+                                        <label><input name="interests" type="checkbox"> Senior Care</label>
+                                        <label><input name="interests" type="checkbox"> Technology</label>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <h4>Select your skills</h4>
+                                    <div class="skills-collection">
+                                        <label><input name="skills" type="checkbox"> Computer/IT skills</label>
+                                        <label><input name="skills" type="checkbox"> Teaching/Tutoring skills</label>
+                                        <label><input name="skills" type="checkbox"> Leadership skills</label>
+                                        <label><input name="skills" type="checkbox"> Event Planning skills</label>
+                                        <label><input name="skills" type="checkbox"> Fundraising skills</label>
+                                        <label><input name="skills" type="checkbox"> Driving</label>
+                                        <label><input name="skills" type="checkbox"> Social Media skills</label>
+                                        <label><input name="skills" type="checkbox"> Healthcare skills</label>
+                                        <label><input name="skills" type="checkbox"> Multiple languages</label>
+                                        <label><input name="skills" type="checkbox"> Manual Labour skills</label>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <h4>Availability</h4>
+                                    <div>
+                                        <label ><input name="availablity" type="checkbox"> Mondays</label>
+                                        <label ><input name="availablity" type="checkbox"> Tuesdays</label>
+                                        <label ><input name="availablity" type="checkbox"> Wednsdays</label>
+                                        <label ><input name="availablity" type="checkbox"> Thursdays</label>
+                                        <label ><input name="availablity" type="checkbox"> Fridays</label>
+                                        <label ><input name="availablity" type="checkbox"> Saturdays</label>
+                                        <label ><input name="availablity" type="checkbox"> Sundays</label>
+
+                                    </div>
+                                    
+                                </div>
+                                <div class="input-field">
+                                    <h4>Bio</h4>
+                                    <textarea id="first_name" placeholder="Short description about you(50 words max)"></textarea>
+                                </div>
+                                <button>Save</button>
+                            </form>
+                        </div>
+                    
+                </section>
+                <section class="expandable-section" id="active-applications">
+                    <div class="section-title">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h2 class="title">Applications</h2>
+                    </div>
+                        <div class="section-content">
+                            <p>the content goes here</p>
+                        </div>
+                </section>
+                <section class="expandable-section" id="achievements">
+                    <div class="section-title">
+                        <i class="fa-solid fa-trophy"></i>
+                        <h2 class="title">Achievements</h2>
+                    </div>
+                        <div class="section-content">
+                            <p>the content goes here</p>
+                        </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-icons">
+                <a><img src="images/instagram.svg" width="35" height="35"></a>
+                <a><img src="images/facebook.svg" width="35" height="35"></a>
+                <a><img src="images/youtube.svg" width="35" height="35"></a>
+                <a><img src="images/discord.svg" width="35" height="35"></a>
+                <a><img src="images/slack.svg" width="35" height="35"></a>
+                <a><img src="images/linkedin.svg" width="35" height="35"></a>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="">Terms of use</a></li>
+                    <li><a href="">Privacy policy</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy 2024 by Girum Zebene. All right reserved</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>{
+            const sections = document.querySelectorAll('.expandable-section');
+
+            sections.forEach(section => {
+                const title = section.querySelector('.section-title');
+                title.addEventListener('click', () => {
+                    section.classList.toggle('expanded');
+                    sections.forEach(otherSection => {
+                        if (otherSection !== section) {
+                            otherSection.classList.remove('expanded');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
