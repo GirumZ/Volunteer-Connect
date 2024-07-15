@@ -76,6 +76,18 @@ header{
     font-weight: 500;
 }
 
+.header-signup a{
+    font-size: 20px;
+    text-decoration: none;
+    color: orangered;
+    transition: transform 0.3s ease, font-size 0.3 ease;
+}
+
+.header-signup a:hover{
+    transform: scale(1.2);
+    font-size: 22px;
+}
+
 .signup-img{
     padding: 0 20px;
 }
