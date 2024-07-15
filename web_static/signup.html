@@ -23,9 +23,8 @@
                     </ul>
                 </nav>
                 <div class="header-signup">
-                    <h3>Sign In / Register</h3>
+                    <h3><a href="signin.html">Sign In / Register</a></h3>
                     <div class="signup-img">
-                        <h2>V</h2>
                     </div>
                 </div>
             </div>
@@ -41,46 +40,46 @@
                         <option value="organization">An Organization</option>
                     </select>
                 </div>
-                <form id="volunteerForm" name="volunteerForm" class="form-container" action="">
+                <form id="volunteerForm" name="volunteerForm" class="form-container">
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
                         <label for="first_name"></label>
-                        <input type="text" id="first_name" placeholder="First Name">
+                        <input type="text" id="first_name" placeholder="First Name" autocomplete="username">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
                         <label for="last_name"></label>
-                        <input type="text" id="last_name" placeholder="Last Name">
+                        <input type="text" id="last_name" placeholder="Last Name" autocomplete="username">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
-                        <label for="email"></label>
-                        <input type="email" placeholder="Email">
+                        <label for="volunteer-email"></label>
+                        <input type="email" id="volunteer-email" placeholder="Email" autocomplete="email">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-lock"></i>
-                        <label for="password"></label>
-                        <input type="password" placeholder="Password">
+                        <label for="volunteer-password"></label>
+                        <input type="password" id="volunteer-password" placeholder="Password" autocomplete="current-password">
                     </div>
-                    <button>Sign Up</button>
+                    <button onclick="submitSignupForm(event)">Sign Up</button>
                 </form>
                 <form id="organizationForm" name="organizationForm" class="form-container" action="">
                     <div class="input-field">
                         <i class="fa-solid fa-building"></i>
-                        <label for="last_name"></label>
-                        <input type="text" id="org_name" placeholder="Organization Name">
+                        <label for="org-name"></label>
+                        <input type="text" id="org-name" placeholder="Organization Name">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
-                        <label for="email"></label>
-                        <input type="email" id="email" placeholder="Email">
+                        <label for="org-email"></label>
+                        <input type="email" id="org-email" placeholder="Email" autocomplete="email">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-lock"></i>
-                        <label for="password"></label>
-                        <input type="password" id="password" placeholder="Password">
+                        <label for="org-password"></label>
+                        <input type="password" id="org-password" placeholder="Password" autocomplete="current-password">
                     </div>
-                    <button>Sign Up</button>
+                    <button onclick="submitSignupForm(event)">Sign Up</button>
                 </form>
                 <h3>Already have an account? <a href="signin.html">Sign-In</a></h3>
             </div>
@@ -107,7 +106,8 @@
             </div>
         </footer>
     </div>
-
+    <div id="notificationContainer" class="notification-container"></div>
+    <script src="scripts/scripts.js"></script>
     <script>
         function toggleForm() {
             const userType = document.getElementById('user-type').value;

@@ -39,6 +39,11 @@ header{
     width: 300px;
 }
 
+.header-logo a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .header-logo h2{
     padding-left: 25px;
     color: orangered;
@@ -63,6 +68,16 @@ header{
     padding-right: 15px;
 }
 
+.header-nav a{
+    font-size: 18px;
+    transition: font-size 0.3s ease;
+}
+
+.header-nav a:hover{
+    cursor: pointer;
+    font-size: 19px;
+}
+
 .header-signup{
     display: flex;
     flex-direction: row;
@@ -74,6 +89,18 @@ header{
 .header-signup h3{
     font-family: Poppins;
     font-weight: 500;
+}
+
+.header-signup a{
+    font-size: 20px;
+    text-decoration: none;
+    color: orangered;
+    transition: transform 0.3s ease; font-size: 0.3 ease;
+}
+
+.header-signup a:hover{
+    font-size: 22px;
+    transform: scale(1.5);
 }
 
 .signup-img{
@@ -122,6 +149,11 @@ header{
     border: none;
     background-color: orangered;
     color: white;
+    transition: transform 0.3s ease;
+}
+
+.search-form button:hover{
+    transform: scale(1.2);
 }
 
 .search-section p{
@@ -274,6 +306,11 @@ header{
     color: white;
     border-radius: 25px;
     border: none;
+    transition: transform 0.3s ease;
+}
+
+.call-to-action button:hover{
+    transform: scale(1.2);
 }
 
 /*-------ORGANIZATIONS-SECTION-----*/
@@ -369,6 +406,11 @@ footer{
 
 .footer-icons a{
     margin: 10px;
+}
+
+.footer-icons img:hover{
+    cursor: pointer;
+    transform: scale(1.2);
 }
 
 .footer-links a{

@@ -23,9 +23,8 @@
                     </ul>
                 </nav>
                 <div class="header-signup">
-                    <h3>Sign In / Register</h3>
+                    <h3><a href="signin.html">Sign In / Register</a></h3>
                     <div class="signup-img">
-                        <h2>V</h2>
                     </div>
                 </div>
             </div>
@@ -34,18 +33,18 @@
         <main>
             <div class="signin-container">
                 <h1>Sign In</h1>
-                <form action="">
+                <form id="signinForm" name="signinForm"  action="">
                     <div class="input-field">
                         <i class="fa-solid fa-envelope"></i>
-                        <label for="email"></label>
-                        <input type="email" placeholder="Email">
+                        <label for="user-email"></label>
+                        <input type="email" id="user-email" placeholder="Email" autocomplete="email">
                     </div>
                     <div class="input-field">
                         <i class="fa-solid fa-lock"></i>
-                        <label for="password"></label>
-                        <input type="password" placeholder="Password">
+                        <label for="user-password"></label>
+                        <input type="password" id="user-password" placeholder="Password" autocomplete="current-password">
                     </div>
-                    <button>Sign In</button>
+                    <button onclick="submitSigninForm(event)">Sign In</button>
                 </form>
                 <h3>Don't have an account? <a href="signup.html">Sign-Up</a></h3>
             </div>
@@ -72,5 +71,6 @@
             </div>
         </footer>
     </div>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
