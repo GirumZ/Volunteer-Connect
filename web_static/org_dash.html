@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect</title>
+    <link rel="stylesheet" href="styles/org_dash.css">
+    <script src="https://kit.fontawesome.com/b14251f457.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <div class="header-navbar">
+                <nav class="header-nav">
+                    <ul>
+                        <li><a>Opportunities</a></li>
+                        <li><a>Organization</a></li>
+                        <li><a>About Us</a></li>
+                        <li><a>Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="header-signup">
+                    <h3><a href="signin.html">Sign In / Register</a></h3>
+                    <div class="signup-img">
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+        <main>
+            <div class="dash-container">
+                <section class="expandable-section" id="volunteer-profile">
+                    <div class="section-title">
+                        <i class="fa-solid fa-user"></i>
+                        <h2 class="title"> Organization Profile</h2>
+                    </div>
+                        <div class="section-content">
+                            <form id="volunteerProfileForm" name="volunteerProfileForm" action="">
+                                <div class="input-field">
+                                    <label>Organization Name <input id="org_name" name="org_name" type="text" placeholder="Organization Name"></label>  
+                                </div>
+                                <div class="input-field">
+                                    <label>Esstablished Date <input id="est_date" type="date"></label>
+                                </div>
+                                <div class="input-field">
+                                    <label>Contact Email <input id="contact-email" type="email" placeholder="Email"></label>
+                                </div>
+                                <div class="input-field">
+                                    <label>Contact Phone <input id="contact-phone" type="tel" placeholder="Phone Number"></label>
+                                </div>
+                                <div class="input-field">
+                                    <label for="location">Location</label>
+                                    <select name="location" id="location">
+                                        <option value="Addis Ababa">Addis Ababa</option>
+                                        <option value="Bahir Dar">Bahir Dar</option>
+                                        <option value="Mekele">Mekele</option>
+                                        <option value="Adama">Adama</option>
+                                    </select>
+                                </div>
+                                <div class="input-field">
+                                    <h4>Mission Statment</h4>
+                                    <textarea id="mission-statement" placeholder="What are the missioins of your organization(50 words max)"></textarea>
+                                </div>
+                                <div class="input-field">
+                                    <label>Website Link(url) <input type="url"></label>
+                                </div>
+                                <button>Save</button>
+                            </form>
+                        </div>
+                    
+                </section>
+                <section class="expandable-section" id="active-applications">
+                    <div class="section-title">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h2 class="title">Applications</h2>
+                    </div>
+                    <div class="section-content">
+                        <div class="applications-container">
+                            <div class="application-card">
+                                <h3>Application Title</h3>
+                                <p><strong>Organization Name</strong></p>
+                                <p><strong>Date Applied</strong></p>
+                                <button class="view-details-btn">View Details</button>
+                                <div class="application-details">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
+                                </div>
+                            </div>
+                            <div class="application-card">
+                                <h3>Application Title</h3>
+                                <p><strong>Organization Name</strong></p>
+                                <p><strong>Date Applied</strong></p>
+                                <button class="view-details-btn">View Details</button>
+                                <div class="application-details">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
+                                </div>
+                            </div>
+                            <div class="application-card">
+                                <h3>Application Title</h3>
+                                <p><strong>Organization Name</strong></p>
+                                <p><strong>Date Applied</strong></p>
+                                <button class="view-details-btn">View Details</button>
+                                <div class="application-details">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="expandable-section" id="achievements">
+                    <div class="section-title">
+                        <i class="fa-solid fa-trophy"></i>
+                        <h2 class="title">Achievements</h2>
+                    </div>
+                    <div class="section-content">
+                        <p>the content goes here</p>
+                    </div>
+                        
+                </section>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-icons">
+                <a><img src="images/instagram.svg" width="35" height="35"></a>
+                <a><img src="images/facebook.svg" width="35" height="35"></a>
+                <a><img src="images/youtube.svg" width="35" height="35"></a>
+                <a><img src="images/discord.svg" width="35" height="35"></a>
+                <a><img src="images/slack.svg" width="35" height="35"></a>
+                <a><img src="images/linkedin.svg" width="35" height="35"></a>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="">Terms of use</a></li>
+                    <li><a href="">Privacy policy</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy 2024 by Girum Zebene. All right reserved</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () =>{
+            const sections = document.querySelectorAll('.expandable-section');
+
+            sections.forEach(section => {
+                const title = section.querySelector('.section-title');
+                title.addEventListener('click', () => {
+                    section.classList.toggle('expanded');
+                    sections.forEach(otherSection => {
+                        if (otherSection !== section) {
+                            otherSection.classList.remove('expanded');
+                        }
+                    });
+                });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const appliclatioinCard = event.target.closest('.application-card');
+                    appliclatioinCard.classList.toggle('expanded');
+
+                    if (appliclatioinCard.classList.contains('expanded')) {
+                        event.target.textContent = 'Veiw Less';
+                    } else {
+                        event.target.textContent = 'View Details';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
