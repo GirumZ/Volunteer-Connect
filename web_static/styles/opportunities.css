@@ -1,0 +1,236 @@
+/*Poppins font*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/*Dancing Scrpt font*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+/*Pacifico font*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&display=swap');
+
+/*----------HEADER-STYLES-------*/
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Poppins;
+    list-style: none;
+}
+
+body{
+    height: 100%;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main{
+    flex: 1;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 90px;
+    background-color: antiquewhite;
+}
+
+.header-logo{
+    width: 300px;
+}
+
+.header-logo h2{
+    padding-left: 25px;
+    color: orangered;
+    font-family: Dancing Script;
+    font-weight: 700;
+    font-size: xx-large;
+}
+
+.header-navbar{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.header-nav ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+.header-signup{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    color: orangered;
+}
+
+.header-signup h3{
+    font-family: Poppins;
+    font-weight: 500;
+}
+
+.header-signup a{
+    font-size: 20px;
+    text-decoration: none;
+    color: orangered;
+    transition: transform 0.3s ease, font-size 0.3 ease;
+}
+
+.header-signup a:hover{
+    transform: scale(1.2);
+    font-size: 22px;
+}
+
+.signup-img{
+    padding: 0 20px;
+}
+
+/*---------MAIN-STYELS------------*/
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(144, 201, 230);
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 40px 0;
+}
+
+.filter-section{
+    flex: 1;
+    padding: 20px;
+    border-radius: 1px solid #ddd;
+}
+
+.filter-section h2{
+    margin-bottom: 20px;
+}
+
+.filter-group{
+    margin-bottom: 15px;
+}
+
+.filter-group input,
+.filter-group select{
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+form button{
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+form button:hover{
+    background-color: orange;
+}
+
+
+.opportunities-section{
+    flex: 2;
+    padding: 20px 50px;
+}
+
+.opportunities-section h2{
+    margin-bottom: 20px;
+}
+
+.opportunity-card{
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    max-height: fit-content;
+}
+
+.opportunity-card h3{
+    color:  rgb(4, 115, 171);
+}
+
+.opportunity-details{
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.opportunity-card.expanded .opportunity-details{
+    display: block;
+}
+
+
+
+.view-details-btn,
+.apply{
+    padding: 10px;
+    background-color: orangered;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.view-details-btn:hover, .apply:hover{
+    background-color: orange;
+}
+
+/*----------FOOTER-STYLES----------*/
+
+footer{
+    height: 200px;
+    background-color: rgb(4, 115, 171);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer-icons a{
+    margin: 10px;
+}
+
+.footer-links a{
+    text-decoration: none;
+    color: black;
+}
+
+.footer-links li:not(:last-child)::after{
+    content: "|";
+    margin-left: 10px;
+    color: black
+}
+
+.footer-links ul li{
+    list-style: none;
+    display: inline;
+    padding-right: 15px;
+}
+
+.footer-copyright{
+    color: gray;
+}

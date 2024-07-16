@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VolunteerConnect</title>
+    <link rel="stylesheet" href="styles/opportunities.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="header-logo">
+                <h2>VolunteerConnect</h2>
+            </div>
+            <div class="header-navbar">
+                <nav class="header-nav">
+                    <ul>
+                        <li><a>Opportunities</a></li>
+                        <li><a>Organization</a></li>
+                        <li><a>About Us</a></li>
+                        <li><a>Contact Us</a></li>
+                    </ul>
+                </nav>
+                <div class="header-signup">
+                    <h3><a href="signin.html">Sign In / Register</a></h3>
+                    <div class="signup-img">
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+        <main>
+            <div class="container">
+                <div class="filter-section">
+                    <h2>Filter Opportunities</h2>
+                    <form id="filterForm">
+                        <div class="filter-group">
+                            <label for="location">Location</label>
+                            <select name="location" id="location">
+                                <option value="Addis Ababa">Addis Ababa</option>
+                                <option value="Bahir Dar">Bahir Dar</option>
+                                <option value="Mekele">Mekele</option>
+                                <option value="Adama">Adama</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="dateRange"> Date range: </label>
+                            <input type="date" name="startDate" id="startDate">
+                            <input type="date" name="endDate" id="endDate">
+                        </div>
+                        <div class="filter-group">
+                            <label for="type">Type of Opportunity</label>
+                            <select name="type" id="type">
+                                <option value="all">All</option>
+                                <option value="on site">On site</option>
+                                <option value="remote">Remote</option>
+                            </select>
+                        </div>
+                        <button type="button" onclick="applyFilters()">Apply Filters</button>
+                    </form>
+                </div>
+
+                <div class="opportunities-section">
+                    <h2>Opportunities</h2>
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+
+                    <div class="opportunity-card">
+                        <h3>Opportunity Title</h3>
+                        <h5>Organization Name</h5>
+                        <p><strong>Date:</strong>Jul 16 2004</p>
+                        <div class="opportunity-details">
+                            <p><strong>Description: </strong> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur error harum nesciunt facilis inventore ea quas, labore nam illo at provident eum nisi maxime voluptas neque suscipit corporis obcaecati quisquam!</p>
+                            <p><strong>Skills Needed: </strong> skill requirments will go here</p>
+                            <p><strong>Interest Areas: </strong> interest areas for the opportunity</p>
+                            <p><strong>Contact Email: </strong> example@example.com</p>
+                            <p><strong>Contact Phone: </strong> 123-456-789</p>
+                            <p><strong>Website: </strong> www.http://example.com</p>
+                            <button class="apply">Apply</button>
+                        </div>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-icons">
+                <a><img src="images/instagram.svg" width="35" height="35"></a>
+                <a><img src="images/facebook.svg" width="35" height="35"></a>
+                <a><img src="images/youtube.svg" width="35" height="35"></a>
+                <a><img src="images/discord.svg" width="35" height="35"></a>
+                <a><img src="images/slack.svg" width="35" height="35"></a>
+                <a><img src="images/linkedin.svg" width="35" height="35"></a>
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="">Terms of use</a></li>
+                    <li><a href="">Privacy policy</a></li>
+                    <li><a href="">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy 2024 by Girum Zebene. All right reserved</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+            viewDetailsButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const opportunityCard = event.target.closest('.opportunity-card');
+                    opportunityCard.classList.toggle('expanded');
+
+                    if (opportunityCard.classList.contains('expanded')) {
+                        event.target.textContent = 'View Less';
+                    } else {
+                        event.target.textContent = 'View Details';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
