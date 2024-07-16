@@ -8,6 +8,7 @@ class Opportunity(BaseModel, db.Model):
 
     org_id = db.Column(db.String(36), db.ForeignKey('organizations.id'), nullable=False)
     title = db.Column(db.String(150), nullable=False)
+    opp_type = db.Column(db.String(10), default="On site")
     description = db.Column(db.Text, nullable=False)
     skills_required = db.Column(db.JSON, nullable=False)
     interests_required = db.Column(db.JSON, nullable=False)
