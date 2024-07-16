@@ -80,9 +80,11 @@ header{
     padding: 0 20px;
 }
 
+
 /*--------- MAIN-STYLES-----------*/
 
 main{
+    display: flex;
     box-sizing: border-box;
 }
 

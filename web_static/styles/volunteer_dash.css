@@ -80,23 +80,11 @@ header{
     padding: 0 20px;
 }
 
-/*-----------MAIN-STYLES-----------*/
-
-main{
-    display: flex;
-}
-
-.vertical-navbar{
-    width: 100px;
-    background-color: rgb(4, 115, 171);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 /*--------- MAIN-STYLES-----------*/
 
 main{
+    display: flex;
     box-sizing: border-box;
 }
 
