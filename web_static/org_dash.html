@@ -65,7 +65,7 @@
                                     <textarea id="mission-statement" placeholder="What are the missioins of your organization(50 words max)"></textarea>
                                 </div>
                                 <div class="input-field">
-                                    <label>Website Link(url) <input type="url"></label>
+                                    <label>Website Link(url) <input type="url" id="web-url" name="web-url"></label>
                                 </div>
                                 <button>Save</button>
                             </form>
@@ -196,39 +196,6 @@
             </div>
         </footer>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () =>{
-            const sections = document.querySelectorAll('.expandable-section');
-
-            sections.forEach(section => {
-                const title = section.querySelector('.section-title');
-                title.addEventListener('click', () => {
-                    section.classList.toggle('expanded');
-                    sections.forEach(otherSection => {
-                        if (otherSection !== section) {
-                            otherSection.classList.remove('expanded');
-                        }
-                    });
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
-
-            viewDetailsButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const postCard = event.target.closest('.post-card');
-                    postCard.classList.toggle('expanded');
-
-                    if (postCard.classList.contains('expanded')) {
-                        event.target.textContent = 'Veiw Less';
-                    } else {
-                        event.target.textContent = 'View Details';
-                    }
-                });
-            });
-        });
-    </script>
+   <script src="scripts/scripts.js"></script>
 </body>
 </html>

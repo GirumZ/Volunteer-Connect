@@ -1,10 +1,12 @@
+/*---------------Home page slide----------*/
 let currentSlide = 0;
-
 function showSlide(index) {
+    
     const slides = document.querySelector('.opportunity-slider .opportunity-slide');
     const totalSlides = slides.children.length;
     const slideWidth = slides.children[0].offsetWidth + 20; // Including margin
 
+    
     if (index >= totalSlides) {
         currentSlide = totalSlides - 1;
     } else if (index < 0) {
@@ -70,28 +72,7 @@ function submitSignupForm(event) {
     });
 }
 
-/*function showNotification(message) {
-    var notificationContainer = document.getElementById('notificationContainer');
-
-    var notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-
-    notificationContainer.appendChild(notification);
-
-    setTimeout(() => {
-        notification.classList.add('show');
-    }, 100);
-
-    setTimeout(() => {
-        notification.classList.remove('show');
-        setTimeout(() => {
-            notificationContainer.removeChild(notification);
-        },500);
-    }, 3000);
-}
-*/
-
+//---------------sign-in page-----------------
 function submitSigninForm(event) {
     event.preventDefault();
 
@@ -132,3 +113,105 @@ function submitSigninForm(event) {
         console.error('Error:', error);
     });
 }
+
+//-----------------vollunteer_dash page------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+    // This handles the view more functionality in the volunteer dashboard
+    if (window.location.pathname.includes('volunteer_dash.html')) {
+        const sections = document.querySelectorAll('.expandable-section');
+
+        sections.forEach(section => {
+            const title = section.querySelector('.section-title');
+            title.addEventListener('click', () => {
+                section.classList.toggle('expanded');
+                sections.forEach(otherSection => {
+                    if (otherSection !== section) {
+                        otherSection.classList.remove('expanded');
+                    }
+                });
+            });
+        });
+
+        const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const appliclatioinCard = event.target.closest('.application-card');
+                appliclatioinCard.classList.toggle('expanded');
+
+                if (appliclatioinCard.classList.contains('expanded')) {
+                    event.target.textContent = 'Veiw Less';
+                } else {
+                    event.target.textContent = 'View Details';
+                }
+            });
+        });
+    }
+});
+
+//--------------org_dash page---------------- 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const currentPage = window.location.pathname;
+
+    if (currentPage.includes('volunteer-dash.html')) {
+        handleVolunteerDashboard();
+    } else if (currentPage.includes('org_dash.html')) {
+        handleOrganizationDashboard();
+    }
+});
+
+function handleVolunteerDashboard() {
+    console.log('this is the volunteer dash')
+}
+
+function handleOrganizationDashboard() {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+
+    if (userData && userData.__class__ === 'Organization') {
+        document.getElementById('org_name').value = userData.org_name || '';
+        document.getElementById('est_date').value = userData.est_date || '';
+        document.getElementById('contact-email').value = userData.contact_email || '';
+        document.getElementById('contact-phone').value = userData.contact_phone || '';
+        document.getElementById('location').value = userData.location || '';
+        document.getElementById('mission-statement').value = userData.mission_statement || '';
+        document.getElementById('web_url').value = userData.website_url || '';
+    }
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    if (window.location.pathname.includes('org_dash.html')) {
+        const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const postCard = event.target.closest('.post-card');
+                postCard.classList.toggle('expanded');
+
+                if (postCard.classList.contains('expanded')) {
+                    event.target.textContent = 'Veiw Less';
+                } else {
+                    event.target.textContent = 'View Details';
+                }
+            });
+        });
+
+        const sections = document.querySelectorAll('.expandable-section');
+
+        sections.forEach(section => {
+            const title = section.querySelector('.section-title');
+            title.addEventListener('click', () => {
+                section.classList.toggle('expanded');
+                sections.forEach(otherSection => {
+                    if (otherSection !== section) {
+                        otherSection.classList.remove('expanded');
+                    }
+                });
+            });
+        });
+    }
+});

@@ -40,21 +40,23 @@
                         <div class="section-content">
                             <form id="volunteerProfileForm" name="volunteerProfileForm" action="">
                                 <div class="input-field">
-                                    <label :for="first_name">First Name</label>
-                                    <input id="first_name" name="first_name" type="text" placeholder="First Name">
+                                    <label for="first_name">First Name</label>
+                                    <input id="first_name" name="first_name" type="text" placeholder="First Name" autocomplete="name">
                                 </div>
                                 <div class="input-field">
                                     <label for="last_name">Last Name</label>
                                     <input id="last_name" type="text" placeholder="Last Name">
                                 </div>
                                 <div class="input-field">
-                                    <label for="gender">Gender</label>
-                                    <div>
-                                        <label><input type="radio" id="male" name="gender" value="male"> Male</label>
-                                    </div>
-                                    <div>
-                                        <label><input type="radio" id="female" name="gender" value="female"> Female</label>
-                                    </div>
+                                    <label>Gender
+                                        <div>
+                                            <label><input type="radio" id="male" name="gender" value="male"> Male</label>
+                                        </div>
+                                        <div>
+                                            <label><input type="radio" id="female" name="gender" value="female"> Female</label>
+                                        </div>
+                                    </label>
+                                    
                                 </div>
                                 <div class="input-field">
                                     <label>Date of Birth <input id="date_of_birth" type="date" placeholder="First Name"></label>
@@ -121,7 +123,7 @@
                                 <hr>
                                 <div class="input-field">
                                     <h4>Bio</h4>
-                                    <textarea id="first_name" placeholder="Short description about you(50 words max)"></textarea>
+                                    <textarea id="bio" placeholder="Short description about you(50 words max)"></textarea>
                                 </div>
                                 <button>Save</button>
                             </form>
@@ -198,39 +200,6 @@
             </div>
         </footer>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', () =>{
-            const sections = document.querySelectorAll('.expandable-section');
-
-            sections.forEach(section => {
-                const title = section.querySelector('.section-title');
-                title.addEventListener('click', () => {
-                    section.classList.toggle('expanded');
-                    sections.forEach(otherSection => {
-                        if (otherSection !== section) {
-                            otherSection.classList.remove('expanded');
-                        }
-                    });
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
-
-            viewDetailsButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const appliclatioinCard = event.target.closest('.application-card');
-                    appliclatioinCard.classList.toggle('expanded');
-
-                    if (appliclatioinCard.classList.contains('expanded')) {
-                        event.target.textContent = 'Veiw Less';
-                    } else {
-                        event.target.textContent = 'View Details';
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="scripts/scripts.js"></script>
 </body>
 </html>
