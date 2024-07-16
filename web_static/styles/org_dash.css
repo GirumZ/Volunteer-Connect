@@ -80,20 +80,6 @@ header{
     padding: 0 20px;
 }
 
-/*-----------MAIN-STYLES-----------*/
-
-main{
-    display: flex;
-}
-
-.vertical-navbar{
-    width: 100px;
-    background-color: rgb(4, 115, 171);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 /*--------- MAIN-STYLES-----------*/
 
 main{
@@ -182,7 +168,7 @@ main{
 
 /*----------APPLICATION-STYLES------*/
 
-.applications-container{
+.posts-container{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -190,7 +176,7 @@ main{
     justify-content: center;
 }
 
-.application-card{
+.post-card{
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -200,30 +186,30 @@ main{
     transition: transform 0.3s ease;
 }
 
-.application-card:hover{
+.post-card:hover{
     transform: translateY(-5px);
 }
 
-.application-card.expanded{
+.post-card.expanded{
     max-height: fit-content;
 }
 
-.application-card h3{
+.post-card h3{
     font-size: 1.5rem;
     color: #333;
     margin-bottom: 10px;
 }
 
-.application-details{
+.post-details{
     display: none;
     margin-top: 10px;
 }
 
-.application-card.expanded .application-details{
+.post-card.expanded .post-details{
     display: block;
 }
 
-.application-card button{
+.post-card button{
     background-color: orangered;
     color: white;
     border: none;
@@ -233,7 +219,7 @@ main{
     border-radius: 4px;
 }
 
-.application-card button:hover{
+.post-card button:hover{
     background-color: orange;
 }
 

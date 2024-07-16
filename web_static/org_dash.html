@@ -74,35 +74,35 @@
                 </section>
                 <section class="expandable-section" id="active-applications">
                     <div class="section-title">
-                        <i class="fa-solid fa-briefcase"></i>
-                        <h2 class="title">Applications</h2>
+                        <i class="fa-solid fa-signs-post"></i>
+                        <h2 class="title">Posts</h2>
                     </div>
                     <div class="section-content">
-                        <div class="applications-container">
-                            <div class="application-card">
-                                <h3>Application Title</h3>
+                        <div class="posts-container">
+                            <div class="post-card">
+                                <h3>Opportunity Title</h3>
                                 <p><strong>Organization Name</strong></p>
                                 <p><strong>Date Applied</strong></p>
                                 <button class="view-details-btn">View Details</button>
-                                <div class="application-details">
+                                <div class="post-details">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
                                 </div>
                             </div>
-                            <div class="application-card">
-                                <h3>Application Title</h3>
+                            <div class="post-card">
+                                <h3>Opportunity Title</h3>
                                 <p><strong>Organization Name</strong></p>
                                 <p><strong>Date Applied</strong></p>
                                 <button class="view-details-btn">View Details</button>
-                                <div class="application-details">
+                                <div class="post-details">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
                                 </div>
                             </div>
-                            <div class="application-card">
-                                <h3>Application Title</h3>
+                            <div class="post-card">
+                                <h3>Opportunity Title</h3>
                                 <p><strong>Organization Name</strong></p>
                                 <p><strong>Date Applied</strong></p>
                                 <button class="view-details-btn">View Details</button>
-                                <div class="application-details">
+                                <div class="post-details">
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quis sunt est tempore quia maxime aliquam, numquam ad recusandae molestias ullam id quae, placeat debitis, iste quaerat. Ratione, cumque quasi.</p>
                                 </div>
                             </div>
@@ -111,11 +111,65 @@
                 </section>
                 <section class="expandable-section" id="achievements">
                     <div class="section-title">
-                        <i class="fa-solid fa-trophy"></i>
-                        <h2 class="title">Achievements</h2>
+                        <i class="fa-solid fa-plus"></i>
+                        <h2 class="title">Create New Post</h2>
                     </div>
                     <div class="section-content">
-                        <p>the content goes here</p>
+                        <form class="posting-form" id="postingForm" name="postingForm">
+                            <div class="input-field">
+                                <label>Post Title <input id="post_title" name="post_title" type="text" placeholder="Title"></label>  
+                            </div>
+                            <div class="input-field">
+                                <h4>Description</h4>
+                                <textarea id="postDescriptioin" placeholder="Describe the volunteering opportunity in a few words"></textarea>
+                            </div>
+                            <div class="input-field">
+                                <h4>Areas of Interest</h4>
+                                <div class="interests-collection">
+                                    <label><input name="interests" type="checkbox"> Education</label>
+                                    <label><input name="interests" type="checkbox"> Healthcare</label>
+                                    <label><input name="interests" type="checkbox"> Environmental Conservation</label>
+                                    <label><input name="interests" type="checkbox"> Animal Welfare</label>
+                                    <label><input name="interests" type="checkbox"> sports</label>
+                                    <label><input name="interests" type="checkbox"> Youth Development</label>
+                                    <label><input name="interests" type="checkbox"> Arts and Culture</label>
+                                    <label><input name="interests" type="checkbox"> Disaster Relief</label>
+                                    <label><input name="interests" type="checkbox"> Senior Care</label>
+                                    <label><input name="interests" type="checkbox"> Technology</label>
+                                </div>
+                            </div>
+                            <div class="input-field">
+                                <h4>Skills Required</h4>
+                                <div class="skills-collection">
+                                    <label><input name="skills" type="checkbox"> Computer/IT skills</label>
+                                    <label><input name="skills" type="checkbox"> Teaching/Tutoring skills</label>
+                                    <label><input name="skills" type="checkbox"> Leadership skills</label>
+                                    <label><input name="skills" type="checkbox"> Event Planning skills</label>
+                                    <label><input name="skills" type="checkbox"> Fundraising skills</label>
+                                    <label><input name="skills" type="checkbox"> Driving</label>
+                                    <label><input name="skills" type="checkbox"> Social Media skills</label>
+                                    <label><input name="skills" type="checkbox"> Healthcare skills</label>
+                                    <label><input name="skills" type="checkbox"> Multiple languages</label>
+                                    <label><input name="skills" type="checkbox"> Manual Labour skills</label>
+                                </div>
+                            </div>
+                            <div class="input-field">
+                                <label>Starting Date <input id="startingDate" type="date"></label>
+                            </div>
+                            <div class="input-field">
+                                <label>Ending Date <input id="endingDate" type="date"></label>
+                            </div>
+                            <div class="input-field">
+                                <label for="location">Location</label>
+                                <select name="location" id="location">
+                                    <option value="Addis Ababa">Addis Ababa</option>
+                                    <option value="Bahir Dar">Bahir Dar</option>
+                                    <option value="Mekele">Mekele</option>
+                                    <option value="Adama">Adama</option>
+                                </select>
+                            </div>
+                            <button class="post-btn">Post</button>
+                        </form>
                     </div>
                         
                 </section>
@@ -164,10 +218,10 @@
 
             viewDetailsButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
-                    const appliclatioinCard = event.target.closest('.application-card');
-                    appliclatioinCard.classList.toggle('expanded');
+                    const postCard = event.target.closest('.post-card');
+                    postCard.classList.toggle('expanded');
 
-                    if (appliclatioinCard.classList.contains('expanded')) {
+                    if (postCard.classList.contains('expanded')) {
                         event.target.textContent = 'Veiw Less';
                     } else {
                         event.target.textContent = 'View Details';
