@@ -109,8 +109,23 @@ function submitSigninForm(event) {
     })
     .then(response => response.json())
     .then(data => {
-        alert(`You have successfuly signed in as: ${data.id}`)
-        console.log('sucess:', data);
+
+        if(data.__class__){
+            delete data.password;
+
+            localStorage.setItem('userData', JSON.stringify(data));
+
+            if(data.__class__ === 'Volunteer') {
+                alert('Sign-in Succussful: you will be redirected to your dashboard');
+                window.location.href = 'volunteer_dash.html';
+            } else if (data.__class__ === 'Organization') {
+                alert('Sign-in Succussful: you will be redirected to your dashboard');
+                window.location.href = 'org_dash.html';
+            }
+        } else {
+            alert('Invalid Login')
+        }
+    
     })
     .catch(error => {
         alert('Error while trying to sign in')
