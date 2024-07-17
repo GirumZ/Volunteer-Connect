@@ -114,6 +114,36 @@ function submitSigninForm(event) {
     });
 }
 
+
+//--------------------Sign-out function----------------------
+
+function signOut() {
+
+    window.localStorage.removeItem('userData');
+    window.location.href = 'signin.html';
+    /*fetch('http://localhost:5000/auth/logout', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            localStorage.removeItem('userData');
+            window.location.href = 'signin.html';
+        } else {
+            response.json().then(data => {
+                console.error('Logout failed', data.message);
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error)
+    });
+    */
+}
+
 //-----------------vollunteer_dash page------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -150,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// This is to edit and save volunteer's profile
 document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('volunteer_dash.html')) {
         const form = document.getElementById('volunteerProfileForm');
@@ -188,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.availability.push(checkbox.nextSibling.textContent.trim());
             });
 
-            console.log(formData);
+            //console.log(formData);
 
             fetch(`http://localhost:5000/volunteers/${userData.id}`, {
                 method: 'PUT',
@@ -218,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname;
 
-    if (currentPage.includes('volunteer-dash.html')) {
+    if (currentPage.includes('volunteer_dash.html')) {
         handleVolunteerDashboard();
     } else if (currentPage.includes('org_dash.html')) {
         handleOrganizationDashboard();
@@ -226,7 +257,51 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function handleVolunteerDashboard() {
-    console.log('this is the volunteer dash')
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    const dateObj = new Date(userData.date_of_birth);
+    const formatedDate = dateObj.toISOString().split('T')[0];
+    console.log(userData);
+
+    if (userData && userData.__class__ === 'Volunteer') {
+        document.getElementById('first_name').value = userData.first_name || '';
+        document.getElementById('last_name').value = userData.last_name || '';
+        document.getElementById('date_of_birth').value = formatedDate || '';
+        document.getElementById('phone_number').value = userData.phone_number || '';
+        document.getElementById('location').value = userData.location || '';
+        document.getElementById('bio').value = userData.bio || '';
+
+        if (userData.gender === 'male') {
+            document.getElementById('male').checked = true;
+        } else if (userData.gender === 'female') {
+            document.getElementById('female').checked = true;
+        }
+
+        console.log(userData.interests);
+        console.log(userData.skills);
+        console.log(userData.availability);
+
+        userData.interests.forEach(interest => {
+            const interestCheckbox = document.querySelector(`input[name="interests"][value="${interest}"]`);
+            if(interestCheckbox) {
+                interestCheckbox.checked = true;
+            }
+        });
+
+        userData.skills.forEach(skill => {
+            const skillCheckbox = document.querySelector(`input[name="skills"][value="${skill}"]`);
+            if(skillCheckbox) {
+                skillCheckbox.checked = true;
+            }
+        });
+
+        userData.availability.forEach(day => {
+            const availabilityCheckbox = document.querySelector(`input[name="availability"][value="${day}"]`);
+            if(availabilityCheckbox) {
+                availabilityCheckbox.checked = true;
+            }
+        });
+
+    }
 }
 
 function handleOrganizationDashboard() {
@@ -336,6 +411,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
         
+});
+
+// This is to save and edit organization's profile
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.includes('org_dash.html')) {
+        const form = document.getElementById('organizationProfileForm');
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        console.log(userData);
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formatDate = (datastr) => {
+                const [year, month, day] = datastr.split('-');
+                return `${year}-${month}-${day}`
+            };
+
+            var formData = {
+                org_name: document.getElementById('org_name').value,
+                est_date: formatDate(document.getElementById('est_date').value),
+                mission_statement: document.getElementById('mission-statement').value,
+                contact_email: document.getElementById('contact-email').value,
+                contact_phone: document.getElementById('contact-phone').value,
+                location: document.getElementById('location').value,
+                website_url: document.getElementById('web-url').value
+            };
+
+            //console.log(formData);
+            //alert('data created');
+
+            fetch(`http://localhost:5000/organizations/${userData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('profile updated successfully');
+            })
+            .catch((error) => {
+                console.error('Error updating profile:', error);
+                alert('Problem while updating profile, please try again');
+            });
+            
+        });
+    }
 });
 
 //----------------OPPORTUNITIES PAGE----------------
