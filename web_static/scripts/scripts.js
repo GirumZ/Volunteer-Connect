@@ -150,6 +150,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.includes('volunteer_dash.html')) {
+        const form = document.getElementById('volunteerProfileForm');
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formatDate = (datastr) => {
+                const [year, month, day] = datastr.split('-');
+                return `${year}-${month}-${day}`
+            };
+
+            var formData = {
+                first_name: document.getElementById('first_name').value,
+                last_name: document.getElementById('last_name').value,
+                gender: document.querySelector('input[name="gender"]:checked').value,
+                date_of_birth: formatDate(document.getElementById('date_of_birth').value),
+                phone_number: document.getElementById('phone_number').value,
+                location: document.getElementById('location').value,
+                skills: [],
+                interests: [],
+                availability: [],
+                bio: document.getElementById('bio').value,    
+            };
+
+            document.querySelectorAll('input[name="skills"]:checked').forEach((checkbox) => {
+                formData.skills.push(checkbox.nextSibling.textContent.trim());
+            });
+
+            document.querySelectorAll('input[name="interests"]:checked').forEach((checkbox) => {
+                formData.interests.push(checkbox.nextSibling.textContent.trim());
+            });
+
+            document.querySelectorAll('input[name="availablity"]:checked').forEach((checkbox) => {
+                formData.availability.push(checkbox.nextSibling.textContent.trim());
+            });
+
+            console.log(formData);
+
+            fetch(`http://localhost:5000/volunteers/${userData.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('profile updated successfully');
+            })
+            .catch((error) => {
+                console.error('Error updating profile:', error);
+                alert('Problem while updating profile, please try again');
+            });
+        });
+    }
+});
+
+
+
+
 //--------------org_dash page---------------- 
 // profile auto fill
 
