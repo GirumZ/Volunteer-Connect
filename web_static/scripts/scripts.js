@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //--------------org_dash page---------------- 
+// profile auto fill
 
 document.addEventListener('DOMContentLoaded', () => {
     const currentPage = window.location.pathname;
@@ -181,7 +182,7 @@ function handleOrganizationDashboard() {
 }
 
 
-
+// organization dashboard view more and view less functionality
 document.addEventListener('DOMContentLoaded', () => {
 
     if (window.location.pathname.includes('org_dash.html')) {
@@ -216,54 +217,113 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+// organization dashboard creating new post
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('postingForm');
-    const userData = JSON.parse(localStorage.getItem('userData'));
+    if(window.location.pathname.includes('org_dash.html')) {
 
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
+        const form = document.getElementById('postingForm');
+        const userData = JSON.parse(localStorage.getItem('userData'));
 
-        const formatDate = (datastr) => {
-            const [year, month, day] = datastr.split('-');
-            return `${year}-${month}-${day}`
-        };
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
 
-        var formData = {
-            org_id: userData.id,
-            title: document.getElementById('post-title').value,
-            opp_type: document.getElementById('post-type').value,
-            description: document.getElementById('postDescription').value,
-            skills_required: [],
-            interests_required: [],
-            start_date: formatDate(document.getElementById('startingDate').value),
-            end_date: formatDate(document.getElementById('endingDate').value),
-            location: document.getElementById('post-location').value
-        };
+            const formatDate = (datastr) => {
+                const [year, month, day] = datastr.split('-');
+                return `${year}-${month}-${day}`
+            };
 
-        document.querySelectorAll('input[name="skills"]:checked').forEach((checkbox) => {
-            formData.skills_required.push(checkbox.value);
+            var formData = {
+                org_id: userData.id,
+                title: document.getElementById('post-title').value,
+                opp_type: document.getElementById('post-type').value,
+                description: document.getElementById('postDescription').value,
+                skills_required: [],
+                interests_required: [],
+                start_date: formatDate(document.getElementById('startingDate').value),
+                end_date: formatDate(document.getElementById('endingDate').value),
+                location: document.getElementById('post-location').value
+            };
+
+            document.querySelectorAll('input[name="skills"]:checked').forEach((checkbox) => {
+                formData.skills_required.push(checkbox.value);
+            });
+
+            document.querySelectorAll('input[name="interests"]:checked').forEach((checkbox) => {
+                formData.interests_required.push(checkbox.value);
+            });
+
+            console.log(formData);
+
+            fetch('http://127.0.0.1:5000/opportunities', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Opportunity Posted')
+                form.reset();
+            })
+            .catch((error) => {
+                alert('Problem while posting, Retry');
+            });
         });
 
-        document.querySelectorAll('input[name="interests"]:checked').forEach((checkbox) => {
-            formData.interests_required.push(checkbox.value);
-        });
+    }
+        
+});
 
-        console.log(formData);
+//----------------OPPORTUNITIES PAGE----------------
 
-        fetch('http://127.0.0.1:5000/opportunities', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Opportunity Posted')
-            form.reset();
-        })
-        .catch((error) => {
-            alert('Problem while posting, Retry');
+document.addEventListener('DOMContentLoaded', () => {
+    if(window.location.pathname.includes('opportunities.html')) {
+        document.addEventListener('click', (event) =>{
+            if(event.target.classList.contains('view-details-btn')) {
+                const opportunityCard = event.target.closest('.opportunity-card');
+                opportunityCard.classList.toggle('expanded');
+
+                if (opportunityCard.classList.contains('expanded')) {
+                    event.target.textContent = 'View Less';
+                } else {
+                    event.target.textContent = 'View Details';
+                }
+            }
         });
-    });
+    }
+
+
+    if (window.location.pathname.includes('opportunities.html')) {
+        const opportunityContainer = document.getElementById('opportunityContainer');
+        const opportunityTemplate = document.querySelector('.opportunity-card-template');
+
+        fetch('http://localhost:5000/opportunities')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(opportunity => {
+                    const opportunityCard = opportunityTemplate.cloneNode(true);
+                    opportunityCard.classList.remove('opportunity-card-template');
+                    opportunityCard.style.display = 'block';
+
+                    opportunityCard.querySelector('.opportunity-title').textContent = opportunity.title;
+                    opportunityCard.querySelector('.organization-name').textContent = opportunity.org_id;
+                    opportunityCard.querySelector('.starting-date').textContent = new Date(opportunity.start_date);
+                    opportunityCard.querySelector('.ending-date').textContent = new Date(opportunity.end_date);
+                    //opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
+                    opportunityCard.querySelector('.opportunity-description').textContent = opportunity.description;
+                    opportunityCard.querySelector('.skills-needed').textContent = opportunity.skills_required.join(', ');
+                    opportunityCard.querySelector('.interest-needed').textContent = opportunity.interests_required.join(', ');
+                    opportunityCard.querySelector('.location').textContent = opportunity.location;
+
+                    opportunityContainer.appendChild(opportunityCard)
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching opportunities', error);
+            });
+    }
+
 });
