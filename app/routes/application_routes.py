@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 """routes for the user model"""
 from flask import Blueprint, request, jsonify
+from flask_cors import cross_origin
 from app.models.application import Application
 from app import db
 
 
 bp = Blueprint('applications', __name__, url_prefix='/applications')
 
-@bp.route('/', methods=['POST'])
+@bp.route('/', methods=['POST'], strict_slashes=False)
+@cross_origin()
 def create_application():
     """Creates new application"""
     data = request.get_json()
@@ -16,19 +18,22 @@ def create_application():
     db.session.commit()
     return jsonify(application.to_dict()), 201
 
-@bp.route('/', methods=['GET'])
+@bp.route('/', methods=['GET'], strict_slashes=False)
+@cross_origin()
 def get_applications():
     """Returns all the applications"""
     applications = Application.query.all()
     return jsonify([application.to_dict() for application in applications])
 
-@bp.route('/<string:id>', methods=['GET'])
+@bp.route('/<string:id>', methods=['GET'], strict_slashes=False)
+@cross_origin()
 def get_application(id):
     """Returns specific application using its id"""
     application = Application.query.get_or_404(id)
     return jsonify(application.to_dict())
 
-@bp.route('/<string:id>', methods=['PUT'])
+@bp.route('/<string:id>', methods=['PUT'], strict_slashes=False)
+@cross_origin()
 def update_application(id):
     """ Updates specific application using the id"""
     data = request.get_json()
@@ -38,7 +43,8 @@ def update_application(id):
     db.session.commit()
     return jsonify(application.to_dict())
 
-@bp.route('/<string:id>', methods=['DELETE'])
+@bp.route('/<string:id>', methods=['DELETE'], strict_slashes=False)
+@cross_origin()
 def delete_application(id):
     """Deletes an application"""
     application = Application.query.get_or_404(id)

@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify, redirect, url_for
 from flask_login import login_user, logout_user, current_user, login_required
+from flask_cors import cross_origin
 from ..models.user import User
 from ..models.volunteer import Volunteer
 from ..models.organization import Organization
@@ -7,7 +8,8 @@ from app import db, bcrypt
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-@bp.route('/register', methods=['POST'])
+@bp.route('/register', methods=['POST'], strict_slashes=False)
+@cross_origin()
 def register():
     """registers a user in the database"""
     data = request.get_json()
@@ -25,7 +27,8 @@ def register():
 
     return jsonify(new_user.to_dict()), 201
 
-@bp.route('/volunteer-register', methods=['POST'])
+@bp.route('/volunteer-register', methods=['POST'], strict_slashes=False)
+@cross_origin()
 def volunteer_register():
     """registers a volunteer in the database"""
     data = request.get_json()
@@ -47,7 +50,8 @@ def volunteer_register():
 
     return jsonify(new_volunteer.to_dict()), 201
 
-@bp.route('/organization-register', methods=['POST'])
+@bp.route('/organization-register', methods=['POST'], strict_slashes=False)
+@cross_origin()
 def organization_register():
     """registers an organization in the database"""
     data = request.get_json()
@@ -69,7 +73,8 @@ def organization_register():
     return jsonify(new_organization.to_dict()), 201
 
 
-@bp.route('/login', methods=['POST'])
+@bp.route('/login', methods=['POST'], strict_slashes=False)
+@cross_origin()
 def login():
     """Logs in a user"""
     data = request.get_json()
@@ -89,7 +94,8 @@ def login():
 
     login_user(user)
 
-@bp.route('/logout', methods=['POST'])
+@bp.route('/logout', methods=['POST'], strict_slashes=False)
+@cross_origin()
 @login_required
 def logout():
     """Logs out the current user"""

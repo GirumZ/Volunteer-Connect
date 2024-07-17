@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """routes for the user model"""
 from flask import Blueprint, request, jsonify
+from flask_cors import cross_origin
 from app.models.user import User
 from app.models.volunteer import Volunteer
 from app import db
@@ -8,7 +9,8 @@ from app import db
 
 bp = Blueprint('volunteers', __name__, url_prefix='/volunteers')
 
-@bp.route('/', methods=['POST'])
+@bp.route('/', methods=['POST'], strict_slashes=False)
+@cross_origin()
 def create_volunteer():
     """Creates new volunteer"""
     data = request.get_json()
@@ -17,19 +19,22 @@ def create_volunteer():
     db.session.commit()
     return jsonify(volunteer.to_dict()), 201
 
-@bp.route('/', methods=['GET'])
+@bp.route('/', methods=['GET'], strict_slashes=False)
+@cross_origin()
 def get_volunteers():
     """Returns all the volunteers"""
     volunteers = Volunteer.query.all()
     return jsonify([volunteer.to_dict() for volunteer in volunteers])
 
-@bp.route('/<string:id>', methods=['GET'])
+@bp.route('/<string:id>', methods=['GET'], strict_slashes=False)
+@cross_origin()
 def get_volunteer(id):
     """Returns specific volunteer using its id"""
     volunteer = Volunteer.query.get_or_404(id)
     return jsonify(volunteer.to_dict())
 
-@bp.route('/<string:id>', methods=['PUT'])
+@bp.route('/<string:id>', methods=['PUT'], strict_slashes=False)
+@cross_origin()
 def update_volunteer(id):
     """ Updates specific volunteer using the id"""
     data = request.get_json()
@@ -39,7 +44,8 @@ def update_volunteer(id):
     db.session.commit()
     return jsonify(volunteer.to_dict())
 
-@bp.route('/<string:id>', methods=['DELETE'])
+@bp.route('/<string:id>', methods=['DELETE'], strict_slashes=False)
+@cross_origin()
 def delete_volunteer(id):
     """Deletes a volunteer"""
     volunteer = Volunteer.query.get_or_404(id)

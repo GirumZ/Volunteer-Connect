@@ -16,6 +16,6 @@ class Volunteer(User, db.Model):
     location = db.Column(db.String(100), nullable=True)
     skills = db.Column(db.JSON, nullable=True)
     interests = db.Column(db.JSON, nullable=True)
-    availability = db.Column(db.String(100), nullable=True)
+    availability = db.Column(db.JSON, nullable=True)
     bio = db.Column(db.Text, nullable=True)
     profile_picture_url = db.Column(db.String(255), nullable=True)
