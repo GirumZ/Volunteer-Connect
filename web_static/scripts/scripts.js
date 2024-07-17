@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.interests.push(checkbox.nextSibling.textContent.trim());
             });
 
-            document.querySelectorAll('input[name="availablity"]:checked').forEach((checkbox) => {
+            document.querySelectorAll('input[name="availability"]:checked').forEach((checkbox) => {
                 formData.availability.push(checkbox.nextSibling.textContent.trim());
             });
 
@@ -260,7 +260,7 @@ function handleVolunteerDashboard() {
     const userData = JSON.parse(localStorage.getItem('userData'));
     const dateObj = new Date(userData.date_of_birth);
     const formatedDate = dateObj.toISOString().split('T')[0];
-    console.log(userData);
+    //console.log(userData);
 
     if (userData && userData.__class__ === 'Volunteer') {
         document.getElementById('first_name').value = userData.first_name || '';
@@ -306,10 +306,12 @@ function handleVolunteerDashboard() {
 
 function handleOrganizationDashboard() {
     const userData = JSON.parse(localStorage.getItem('userData'));
+    const dateObj = new Date(userData.est_date);
+    const formatedDate = dateObj.toISOString().split('T')[0];
 
     if (userData && userData.__class__ === 'Organization') {
         document.getElementById('org_name').value = userData.org_name || '';
-        document.getElementById('est_date').value = userData.est_date || '';
+        document.getElementById('est_date').value = formatedDate || '';
         document.getElementById('contact-email').value = userData.contact_email || '';
         document.getElementById('contact-phone').value = userData.contact_phone || '';
         document.getElementById('location').value = userData.location || '';
@@ -497,12 +499,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     opportunityCard.querySelector('.organization-name').textContent = opportunity.org_id;
                     opportunityCard.querySelector('.starting-date').textContent = new Date(opportunity.start_date);
                     opportunityCard.querySelector('.ending-date').textContent = new Date(opportunity.end_date);
-                    //opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
+                    opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
                     opportunityCard.querySelector('.opportunity-description').textContent = opportunity.description;
                     opportunityCard.querySelector('.skills-needed').textContent = opportunity.skills_required.join(', ');
                     opportunityCard.querySelector('.interest-needed').textContent = opportunity.interests_required.join(', ');
                     opportunityCard.querySelector('.location').textContent = opportunity.location;
 
+                    const applyButton = opportunityCard.querySelector('.apply-btn');
+                    applyButton.setAttribute('data-opportunity-id', opportunity.id);
+                                        
                     opportunityContainer.appendChild(opportunityCard)
                 });
             })
@@ -511,4 +516,40 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+});
+
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('apply-btn')) {
+        const opportunityId = event.target.dataset.opportunityId;
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData.__class__ === 'Organization') {
+            alert('Organizations can not apply to an opportunity')
+        } 
+        if (userData.__class__ === 'Volunteer') {
+            const userId = userData.id;
+            //console.log(opportunityId);
+            //console.log(userId);
+
+            fetch('http://localhost:5000/applications', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({opportunity_id: opportunityId, volunteer_id: userId})
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Successfuly applied to this post');
+                } else {
+                    response.json().then(data => {
+                        console.error('Application failed:', data.message);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+    }
 });
