@@ -26,7 +26,7 @@ database = f'mysql+mysqldb://{VC_MYSQL_USER}:{VC_MYSQL_PWD}@{VC_MYSQL_HOST}/{VC_
 
 def create_app():
     app = Flask(__name__)
-    CORS(app)
+    CORS(app, supports_credentials=True)
     app.config['SQLALCHEMY_DATABASE_URI'] = database
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SECRET_KEY'] = urandom(24)

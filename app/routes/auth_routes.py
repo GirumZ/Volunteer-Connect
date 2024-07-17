@@ -85,6 +85,8 @@ def login():
     if user is None or not user.check_password(password):
         return jsonify({'error': 'Invalid credentioals'}), 401
     
+    login_user(user)
+
     volunteer = Volunteer.query.filter_by(id=user.id).first()
     if volunteer is None:
         organization = Organization.query.filter_by(id=user.id).first()
@@ -92,7 +94,7 @@ def login():
     else:
         return jsonify(volunteer.to_dict())
 
-    login_user(user)
+   
 
 @bp.route('/logout', methods=['POST'], strict_slashes=False)
 @cross_origin()
