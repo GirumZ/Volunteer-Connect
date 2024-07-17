@@ -169,6 +169,10 @@ form button:hover{
     max-height: fit-content;
 }
 
+.opportunity-card-template{
+    display: none;
+}
+
 .opportunity-card h3{
     color:  rgb(4, 115, 171);
 }
