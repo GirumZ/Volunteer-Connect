@@ -117,40 +117,48 @@
                     <div class="section-content">
                         <form class="posting-form" id="postingForm" name="postingForm">
                             <div class="input-field">
-                                <label>Post Title <input id="post_title" name="post_title" type="text" placeholder="Title"></label>  
+                                <label>Post Title <input id="post-title" name="post-title" type="text" placeholder="Title"></label>  
+                            </div>
+                            <div class="input-field">
+                                <label for="post-type">Post Type</label>
+                                <select name="post-type" id="post-type">
+                                    <option value="all">All</option>
+                                    <option value="on-site">On site</option>
+                                    <option value="remote">Remote</option>
+                                </select>
                             </div>
                             <div class="input-field">
                                 <h4>Description</h4>
-                                <textarea id="postDescriptioin" placeholder="Describe the volunteering opportunity in a few words"></textarea>
+                                <textarea id="postDescription" placeholder="Describe the volunteering opportunity in a few words"></textarea>
                             </div>
                             <div class="input-field">
                                 <h4>Areas of Interest</h4>
                                 <div class="interests-collection">
-                                    <label><input name="interests" type="checkbox"> Education</label>
-                                    <label><input name="interests" type="checkbox"> Healthcare</label>
-                                    <label><input name="interests" type="checkbox"> Environmental Conservation</label>
-                                    <label><input name="interests" type="checkbox"> Animal Welfare</label>
-                                    <label><input name="interests" type="checkbox"> sports</label>
-                                    <label><input name="interests" type="checkbox"> Youth Development</label>
-                                    <label><input name="interests" type="checkbox"> Arts and Culture</label>
-                                    <label><input name="interests" type="checkbox"> Disaster Relief</label>
-                                    <label><input name="interests" type="checkbox"> Senior Care</label>
-                                    <label><input name="interests" type="checkbox"> Technology</label>
+                                    <label><input name="interests" type="checkbox" value="Education"> Education</label>
+                                    <label><input name="interests" type="checkbox" value="Healthcare"> Healthcare</label>
+                                    <label><input name="interests" type="checkbox" value="Environmental Conservation"> Environmental Conservation</label>
+                                    <label><input name="interests" type="checkbox" value="Animal Welfare"> Animal Welfare</label>
+                                    <label><input name="interests" type="checkbox" value="Sports"> Sports</label>
+                                    <label><input name="interests" type="checkbox" value="Youth Development"> Youth Development</label>
+                                    <label><input name="interests" type="checkbox" value="Arts and Culture"> Arts and Culture</label>
+                                    <label><input name="interests" type="checkbox" value="Disaster Relief"> Disaster Relief</label>
+                                    <label><input name="interests" type="checkbox" value="Senior Care"> Senior Care</label>
+                                    <label><input name="interests" type="checkbox" value="Technology"> Technology</label>
                                 </div>
                             </div>
                             <div class="input-field">
                                 <h4>Skills Required</h4>
                                 <div class="skills-collection">
-                                    <label><input name="skills" type="checkbox"> Computer/IT skills</label>
-                                    <label><input name="skills" type="checkbox"> Teaching/Tutoring skills</label>
-                                    <label><input name="skills" type="checkbox"> Leadership skills</label>
-                                    <label><input name="skills" type="checkbox"> Event Planning skills</label>
-                                    <label><input name="skills" type="checkbox"> Fundraising skills</label>
-                                    <label><input name="skills" type="checkbox"> Driving</label>
-                                    <label><input name="skills" type="checkbox"> Social Media skills</label>
-                                    <label><input name="skills" type="checkbox"> Healthcare skills</label>
-                                    <label><input name="skills" type="checkbox"> Multiple languages</label>
-                                    <label><input name="skills" type="checkbox"> Manual Labour skills</label>
+                                    <label><input name="skills" type="checkbox" value="Computer/IT"> Computer/IT skills</label>
+                                    <label><input name="skills" type="checkbox" value="Teaching/Tutoring"> Teaching/Tutoring skills</label>
+                                    <label><input name="skills" type="checkbox" value="Leadership"> Leadership skills</label>
+                                    <label><input name="skills" type="checkbox" value="Event Planning"> Event Planning skills</label>
+                                    <label><input name="skills" type="checkbox" value="Fundraising"> Fundraising skills</label>
+                                    <label><input name="skills" type="checkbox" value="Driving"> Driving</label>
+                                    <label><input name="skills" type="checkbox" value="Social Media"> Social Media skills</label>
+                                    <label><input name="skills" type="checkbox" value="Healthcare"> Healthcare skills</label>
+                                    <label><input name="skills" type="checkbox" value="Multiple Languages"> Multiple Languages</label>
+                                    <label><input name="skills" type="checkbox" value="Manual Labour"> Manual Labour skills</label>
                                 </div>
                             </div>
                             <div class="input-field">
@@ -160,14 +168,9 @@
                                 <label>Ending Date <input id="endingDate" type="date"></label>
                             </div>
                             <div class="input-field">
-                                <label for="location">Location</label>
-                                <select name="location" id="location">
-                                    <option value="Addis Ababa">Addis Ababa</option>
-                                    <option value="Bahir Dar">Bahir Dar</option>
-                                    <option value="Mekele">Mekele</option>
-                                    <option value="Adama">Adama</option>
-                                </select>
+                                <label>Location <input id="post-location" type="text"></label>
                             </div>
+                            
                             <button class="post-btn">Post</button>
                         </form>
                     </div>

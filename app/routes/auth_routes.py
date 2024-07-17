@@ -79,9 +79,15 @@ def login():
     user =  User.query.filter_by(email=email).first()
     if user is None or not user.check_password(password):
         return jsonify({'error': 'Invalid credentioals'}), 401
+    
+    volunteer = Volunteer.query.filter_by(id=user.id).first()
+    if volunteer is None:
+        organization = Organization.query.filter_by(id=user.id).first()
+        return jsonify(organization.to_dict())
+    else:
+        return jsonify(volunteer.to_dict())
 
     login_user(user)
-    return jsonify(user.to_dict())
 
 @bp.route('/logout', methods=['POST'])
 @login_required

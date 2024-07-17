@@ -176,7 +176,7 @@ function handleOrganizationDashboard() {
         document.getElementById('contact-phone').value = userData.contact_phone || '';
         document.getElementById('location').value = userData.location || '';
         document.getElementById('mission-statement').value = userData.mission_statement || '';
-        document.getElementById('web_url').value = userData.website_url || '';
+        document.getElementById('web-url').value = userData.website_url || '';
     }
 }
 
@@ -214,4 +214,56 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('postingForm');
+    const userData = JSON.parse(localStorage.getItem('userData'));
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formatDate = (datastr) => {
+            const [year, month, day] = datastr.split('-');
+            return `${year}-${month}-${day}`
+        };
+
+        var formData = {
+            org_id: userData.id,
+            title: document.getElementById('post-title').value,
+            opp_type: document.getElementById('post-type').value,
+            description: document.getElementById('postDescription').value,
+            skills_required: [],
+            interests_required: [],
+            start_date: formatDate(document.getElementById('startingDate').value),
+            end_date: formatDate(document.getElementById('endingDate').value),
+            location: document.getElementById('post-location').value
+        };
+
+        document.querySelectorAll('input[name="skills"]:checked').forEach((checkbox) => {
+            formData.skills_required.push(checkbox.value);
+        });
+
+        document.querySelectorAll('input[name="interests"]:checked').forEach((checkbox) => {
+            formData.interests_required.push(checkbox.value);
+        });
+
+        console.log(formData);
+
+        fetch('http://127.0.0.1:5000/opportunities', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Opportunity Posted')
+            form.reset();
+        })
+        .catch((error) => {
+            alert('Problem while posting, Retry');
+        });
+    });
 });
