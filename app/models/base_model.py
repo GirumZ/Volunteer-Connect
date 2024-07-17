@@ -3,7 +3,7 @@ from uuid import uuid4
 from .. import db
 from sqlalchemy.dialects.mysql import JSON
 
-time = '%Y-%m-%dT%H:%M:%S.%f'
+time = '%m/%d/%Y-%H:%M:%S'
 
 class BaseModel(db.Model):
     """ BaseModel class"""
