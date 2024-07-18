@@ -52,3 +52,9 @@ def delete_application(id):
     db.session.commit()
     return '', 204
 
+@bp.route('/volunteer/<string:id>', methods=['GET'], strict_slashes=False)
+@cross_origin()
+def get_applications_by_id(id):
+    """Returns all applications that has the given volunteer id"""
+    applications = Application.query.filter_by(volunteer_id=id).all()
+    return jsonify([application.to_dict() for application in applications])
