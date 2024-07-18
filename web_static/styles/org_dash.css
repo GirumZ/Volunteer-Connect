@@ -188,6 +188,10 @@ main{
     transition: transform 0.3s ease;
 }
 
+.post-card-template{
+    display: none;
+}
+
 .post-card:hover{
     transform: translateY(-5px);
 }
@@ -198,7 +202,7 @@ main{
 
 .post-card h3{
     font-size: 1.5rem;
-    color: #333;
+    color: rgb(4, 115, 171);
     margin-bottom: 10px;
 }
 
@@ -211,7 +215,7 @@ main{
     display: block;
 }
 
-.post-card button{
+.post-card .view-details-btn{
     background-color: orangered;
     color: white;
     border: none;
@@ -219,6 +223,10 @@ main{
     margin-top: 10px;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.post-card .show-applicants{
+    background-color: rgb(4, 115, 171);
 }
 
 .post-card button:hover{

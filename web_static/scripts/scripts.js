@@ -174,7 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     event.target.textContent = 'View Details';
                 }
             }
-        });      
+        });
+
     }
 
     // To load applications on page load
@@ -357,19 +358,19 @@ function handleOrganizationDashboard() {
 document.addEventListener('DOMContentLoaded', () => {
 
     if (window.location.pathname.includes('org_dash.html')) {
-        const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+        //const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
 
-        viewDetailsButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
+        document.addEventListener('click', (event) =>{
+            if(event.target.classList.contains('view-details-btn')) {
                 const postCard = event.target.closest('.post-card');
                 postCard.classList.toggle('expanded');
 
                 if (postCard.classList.contains('expanded')) {
-                    event.target.textContent = 'Veiw Less';
+                    event.target.textContent = 'View Less';
                 } else {
                     event.target.textContent = 'View Details';
                 }
-            });
+            }
         });
 
         const sections = document.querySelectorAll('.expandable-section');
@@ -386,6 +387,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    //To load opportunities when the org_dash loads
+    if (window.location.pathname.includes('org_dash.html')) {
+        const postContainer = document.getElementById('postContainer');
+        const postTemplate = document.querySelector('.post-card-template');
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const userId = userData.id;
+
+        fetch(`http://localhost:5000/opportunities/organization/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(post => {
+                    const postCard = postTemplate.cloneNode(true);
+                    postCard.classList.remove('post-card-template');
+                    postCard.style.display = 'block';
+
+                    postCard.querySelector('.post-title').textContent = post.title;
+                    postCard.querySelector('.organization-name').textContent = post.org_id;
+                    postCard.querySelector('.post-start-date').textContent = new Date(post.start_date);
+                    postCard.querySelector('.post-end-date').textContent = new Date(post.end_date);
+                    
+                    postCard.querySelector('.post-description').textContent = post.description;
+
+                    const showButton = postCard.querySelector('.show-applicants');
+                    showButton.setAttribute('data-post-id', post.id);
+                                        
+                    postContainer.appendChild(postCard)
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching posts', error);
+            });
+    }
+
 });
 
 
