@@ -163,21 +163,53 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+        document.addEventListener('click', (event) =>{
+            if(event.target.classList.contains('view-details-btn')) {
+                const applicationCard = event.target.closest('.application-card');
+                applicationCard.classList.toggle('expanded');
 
-        viewDetailsButtons.forEach(button => {
-            button.addEventListener('click', (event) => {
-                const appliclatioinCard = event.target.closest('.application-card');
-                appliclatioinCard.classList.toggle('expanded');
-
-                if (appliclatioinCard.classList.contains('expanded')) {
-                    event.target.textContent = 'Veiw Less';
+                if (applicationCard.classList.contains('expanded')) {
+                    event.target.textContent = 'View Less';
                 } else {
                     event.target.textContent = 'View Details';
                 }
-            });
-        });
+            }
+        });      
     }
+
+    // To load applications on page load
+    if (window.location.pathname.includes('volunteer_dash.html')) {
+        const applicationContainer = document.getElementById('applicationContainer');
+        const applicationTemplate = document.querySelector('.application-card-template');
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        const userId = userData.id;
+
+        fetch(`http://localhost:5000/applications/volunteer/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(application => {
+                    const applicationCard = applicationTemplate.cloneNode(true);
+                    applicationCard.classList.remove('application-card-template');
+                    applicationCard.style.display = 'block';
+
+                    //applicationCard.querySelector('.application-title').textContent = application.title;
+                    applicationCard.querySelector('.organization-name').textContent = application.opportunity_id;
+                    applicationCard.querySelector('.applied-date').textContent = new Date(application.created_at);
+                    applicationCard.querySelector('.application-status').textContent = application.status;
+                    applicationCard.querySelector('.application-description').textContent = application.opportunity_id;
+
+                    const cancleButton = applicationCard.querySelector('.app-cancle-btn');
+                    cancleButton.setAttribute('data-application-id', application.id);
+                                        
+                    applicationContainer.appendChild(applicationCard)
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching applications', error);
+            });
+    }
+
 });
 
 // This is to edit and save volunteer's profile

@@ -211,17 +211,28 @@ main{
     display: block;
 }
 
-.application-card button{
+.application-card-template{
+    display: none;
+}
+
+.application-card .view-details-btn{
     background-color: orangered;
     color: white;
     border: none;
     font-size: 1rem;
     margin-top: 10px;
+    padding: 0 5px;
     cursor: pointer;
     border-radius: 4px;
+    width: fit-content;
 }
 
-.application-card button:hover{
+.application-card .app-cancle-btn{
+    background-color: red;
+    width: fit-content;
+}
+
+.application-card .view-details-btn:hover{
     background-color: orange;
 }
 
