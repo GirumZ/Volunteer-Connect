@@ -52,3 +52,9 @@ def delete_user(id):
     db.session.commit()
     return '', 204
 
+@bp.route('/organization/<string:id>', methods=['GET'], strict_slashes=False)
+@cross_origin()
+def get_opportunities_by_id(id):
+    """Returns all opportunities that has the given organization id"""
+    opportunities = Opportunity.query.filter_by(org_id=id).all()
+    return jsonify([opportunity.to_dict() for opportunity in opportunities])
