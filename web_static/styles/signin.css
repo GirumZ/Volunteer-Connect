@@ -198,6 +198,11 @@ footer{
     margin: 10px;
 }
 
+.footer-icons img:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
 .footer-links a{
     text-decoration: none;
     color: black;
@@ -216,5 +221,5 @@ footer{
 }
 
 .footer-copyright{
-    color: gray;
+    color: darkgray;
 }
