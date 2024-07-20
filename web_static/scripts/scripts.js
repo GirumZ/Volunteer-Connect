@@ -621,3 +621,7 @@ document.addEventListener('click', (event) => {
         
     }
 });
+
+function redirectPage(url) {
+    window.location.href = url;
+}

@@ -88,25 +88,19 @@ header{
     color: orangered;
 }
 
-.header-signup h3{
-    font-family: Poppins;
-    font-weight: 500;
+.header-signup button{
+    width: fit-content;
+    margin: 0 20px;
+    border-radius: 10px;
+    border: none;
+    padding: 5px 3px;
+    background-color: orangered;
+    color: white;
+    transition: transform 0.3s ease;
 }
 
-.header-signup a{
-    font-size: 20px;
-    text-decoration: none;
-    color: orangered;
-    transition: transform 0.3s ease; font-size: 0.3 ease;
-}
-
-.header-signup a:hover{
-    font-size: 22px;
-    transform: scale(1.5);
-}
-
-.signup-img{
-    padding: 0 20px;
+.header-signup button:hover{
+    transform: scale(1.2);
 }
 
 /*----------SEARCH-SECTION---------*/

@@ -17,22 +17,20 @@
                 <nav class="header-nav">
                     <ul>
                         <li><a href="opportunities.html">Opportunities</a></li>
-                        <li><a>Organization</a></li>
-                        <li><a>About Us</a></li>
-                        <li><a>Contact Us</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us">Contact Us</a></li>
                     </ul>
                 </nav>
                 <div class="header-signup">
-                    <h3><a href="signin.html">Sign In / Register</a></h3>
-                    <div class="signup-img">
-                    </div>
+                    <button onclick="redirectPage('signin.html')">Sign-in/Register</button>
                 </div>
             </div>
             
         </header>
         <main>
             <section class="search-section">
-                <h1>Find an opportunity that best fits you</h1>
+                <h1>Find an Opportunity by Location</h1>
                 <form class="search-form">
                     <input type="text" id="searchQuery" name="query" placeholder="  Search for opportunities . . .">
                     <button type="submit">Search</button>
@@ -149,7 +147,7 @@
                     By signing up, you'll gain access to meaningful volunteer opportunities, 
                     connect with like-minded individuals, and make a lasting impact.
                 </p>
-                <button>Sign Up</button>
+                <button onclick="redirectPage('signup.html')">Sign Up</button>
             </section>
             <section>
                 <div class="organizations-section">
@@ -176,7 +174,7 @@
                     Our platform makes it easy to find the support you need. 
                     Register today and start making a bigger impact.
                 </p>
-                <button>Register</button>
+                <button onclick="redirectPage('signup.html')">Register</button>
             </section>
             <section class="community-section">
 
@@ -189,12 +187,12 @@
         </main>
         <footer>
             <div class="footer-icons">
-                <a><img src="images/instagram.svg" width="35" height="35"></a>
-                <a><img src="images/facebook.svg" width="35" height="35"></a>
-                <a><img src="images/youtube.svg" width="35" height="35"></a>
-                <a><img src="images/discord.svg" width="35" height="35"></a>
-                <a><img src="images/slack.svg" width="35" height="35"></a>
-                <a><img src="images/linkedin.svg" width="35" height="35"></a>
+                <a href="https://www.instagram.com/"><img src="images/instagram.svg" width="35" height="35"></a>
+                <a href="https://www.facebook.com/"><img src="images/facebook.svg" width="35" height="35"></a>
+                <a href="https://www.youtube.com/"><img src="images/youtube.svg" width="35" height="35"></a>
+                <a href="https://twitter.com/"><img src="images/discord.svg" width="35" height="35"></a>
+                <a href="https://slack.com/"><img src="images/slack.svg" width="35" height="35"></a>
+                <a href="https://www.linkedin.com/"><img src="images/linkedin.svg" width="35" height="35"></a>
             </div>
             <div class="footer-links">
                 <ul>
@@ -204,7 +202,7 @@
                 </ul>
             </div>
             <div class="footer-copyright">
-                <p>&copy 2024 by Girum Zebene. All right reserved</p>
+                <p>&copy 2024 by Volunteer Connect. All right reserved</p>
             </div>
         </footer>
     </div>
