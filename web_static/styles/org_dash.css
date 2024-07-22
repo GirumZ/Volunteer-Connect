@@ -127,7 +127,7 @@ main{
 }
 
 .section-title{
-    background-color: rgb(144, 201, 230);
+    background-color: rgb(4, 115, 171);
     cursor: pointer;
     user-select: none;
     display: flex;
@@ -142,7 +142,7 @@ main{
 }
 
 .title{
-    background-color: rgb(144, 201, 230);
+    background-color: rgb(4, 115, 171);
     padding: 20px;
     margin: 0;
 }
