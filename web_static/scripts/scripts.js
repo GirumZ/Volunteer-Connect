@@ -194,17 +194,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     applicationCard.classList.remove('application-card-template');
                     applicationCard.style.display = 'block';
 
-                    //applicationCard.querySelector('.application-title').textContent = application.title;
-                    applicationCard.querySelector('.organization-name').textContent = application.opportunity_id;
+                    applicationCard.querySelector('.application-title').textContent = application.opp_title;
+                    applicationCard.querySelector('.organization-name').textContent = application.org_name;
                     applicationCard.querySelector('.applied-date').textContent = new Date(application.created_at);
                     applicationCard.querySelector('.application-status').textContent = application.status;
-                    applicationCard.querySelector('.application-description').textContent = application.opportunity_id;
+                    applicationCard.querySelector('.application-description').textContent = application.opp_description;
 
                     const cancleButton = applicationCard.querySelector('.app-cancle-btn');
                     cancleButton.setAttribute('data-application-id', application.id);
                                         
                     applicationContainer.appendChild(applicationCard)
                 });
+
+                applicationContainer.addEventListener('click', (event) => {
+                    if (event.target.classList.contains('app-cancle-btn')) {
+                        const applicationId = event.target.dataset.applicationId;
+
+                        fetch(`http://localhost:5000/applications/${applicationId}`, {
+                            method: 'DELETE'
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('You have canced this Application');
+                                event.target.closest('.application-card').remove();
+                            } else {
+                                response.json().then(data => {
+                                    console.log('Cancelation failed:', data.message);
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                });
+
             })
             .catch(error => {
                 console.error('Error fetching applications', error);
@@ -405,7 +429,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     postCard.style.display = 'block';
 
                     postCard.querySelector('.post-title').textContent = post.title;
-                    postCard.querySelector('.organization-name').textContent = post.org_id;
+                    postCard.querySelector('.organization-name').textContent = post.org_name;
                     postCard.querySelector('.post-start-date').textContent = new Date(post.start_date);
                     postCard.querySelector('.post-end-date').textContent = new Date(post.end_date);
                     
@@ -442,6 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             var formData = {
                 org_id: userData.id,
+                org_name: userData.org_name,
                 title: document.getElementById('post-title').value,
                 opp_type: document.getElementById('post-type').value,
                 description: document.getElementById('postDescription').value,
@@ -460,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.interests_required.push(checkbox.value);
             });
 
-            console.log(formData);
+            //console.log(formData);
 
             fetch('http://127.0.0.1:5000/opportunities', {
                 method: 'POST',
@@ -564,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     opportunityCard.style.display = 'block';
 
                     opportunityCard.querySelector('.opportunity-title').textContent = opportunity.title;
-                    opportunityCard.querySelector('.organization-name').textContent = opportunity.org_id;
+                    opportunityCard.querySelector('.organization-name').textContent = opportunity.org_name;
                     opportunityCard.querySelector('.starting-date').textContent = new Date(opportunity.start_date);
                     opportunityCard.querySelector('.ending-date').textContent = new Date(opportunity.end_date);
                     opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
@@ -575,6 +600,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     const applyButton = opportunityCard.querySelector('.apply-btn');
                     applyButton.setAttribute('data-opportunity-id', opportunity.id);
+                    applyButton.setAttribute('data-opportunity-org', opportunity.org_name);
+                    applyButton.setAttribute('data-opportunity-title', opportunity.title);
+                    applyButton.setAttribute('data-opportunity-description', opportunity.description);
                                         
                     opportunityContainer.appendChild(opportunityCard)
                 });
@@ -589,6 +617,9 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('apply-btn')) {
         const opportunityId = event.target.dataset.opportunityId;
+        const opportunityOrg = event.target.dataset.opportunityOrg;
+        const opportunityTitle = event.target.dataset.opportunityTitle;
+        const opportunityDescription = event.target.dataset.opportunityDescription;
         const userData = JSON.parse(localStorage.getItem('userData'));
         if (userData.__class__ === 'Organization') {
             alert('Organizations can not apply to an opportunity')
@@ -603,7 +634,7 @@ document.addEventListener('click', (event) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({opportunity_id: opportunityId, volunteer_id: userId})
+                body: JSON.stringify({opportunity_id: opportunityId, org_name: opportunityOrg, opp_title: opportunityTitle, opp_description: opportunityDescription, volunteer_id: userId})
             })
             .then(response => {
                 if (response.ok) {
