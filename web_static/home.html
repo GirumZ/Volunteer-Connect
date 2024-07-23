@@ -44,102 +44,22 @@
                     <button class="prev" onclick="prevSlide()"><span style="font-size: 35px;">&#10094;</span></button>
                     <div class="opportunities-container">
                         <div class="opportunity-slider">
-                            <div class="opportunity-slide">
-                                <div class="opportunity-card">
-                                    <div class="opportunity-img">
-                                        <img src="images/card-1.jpeg" alt="Organization logo">
-                                    </div>
-                                    <div class="opportunity-description">
-                                        <h2>1.Summer camp for kids with cancer</h2>
-                                        <h3>09 Jul | 12:00AM - 12:30AM</h3>
-                                        <h4>Virtual</h2>
-                                        <p>This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                        </p>
-                                    </div>        
+                            <div class="opportunity-slide" id="opportunitySlide">
+                                <div class="opportunity-card opportunity-card-template">
+                                    <div><img class="opportunity-img" src="images/card-2.jpg" alt="opportunity-img"></div>
+                                    <h3 class="opportunity-title">Opportunity Title</h3>
+                                    <h5 class="organization-name">Organization Name</h5>
+                                    <p><strong>Starting Date: </strong><span class="starting-date"> Jan 16 2024</span></p>
+                                    <p><strong>Ending Date: </strong><span class="ending-date"> Jan 16 2024</span></p>
+                                    <p><strong>Type:</strong><span class="opportunity-type"> On site</span></p>
                                 </div>
-                                <div class="opportunity-card">
-                                    <div class="opportunity-img">
-                                        <img src="images/card-1.jpeg" alt="Organization logo">
-                                    </div>
-                                    <div class="opportunity-description">
-                                        <h2>2.Summer camp for kids with cancer</h2>
-                                        <h3>09 Jul | 12:00AM - 12:30AM</h3>
-                                        <h4>Virtual</h2>
-                                        <p>This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                        </p>
-                                    </div>        
-                                </div>
-                                <div class="opportunity-card">
-                                    <div class="opportunity-img">
-                                        <img src="images/card-1.jpeg" alt="Organization logo">
-                                    </div>
-                                    <div class="opportunity-description">
-                                        <h2>3.Summer camp for kids with cancer</h2>
-                                        <h3>09 Jul | 12:00AM - 12:30AM</h3>
-                                        <h4>Virtual</h2>
-                                        <p>This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                        </p>
-                                    </div>        
-                                </div>
-                                <div class="opportunity-card">
-                                    <div class="opportunity-img">
-                                        <img src="images/card-1.jpeg" alt="Organization logo">
-                                    </div>
-                                    <div class="opportunity-description">
-                                        <h2>4.Summer camp for kids with cancer</h2>
-                                        <h3>09 Jul | 12:00AM - 12:30AM</h3>
-                                        <h4>Virtual</h2>
-                                        <p>This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                        </p>
-                                    </div>        
-                                </div>
-                                <div class="opportunity-card">
-                                    <div class="opportunity-img">
-                                        <img src="images/card-1.jpeg" alt="Organization logo">
-                                    </div>
-                                    <div class="opportunity-description">
-                                        <h2>5.Summer camp for kids with cancer</h2>
-                                        <h3>09 Jul | 12:00AM - 12:30AM</h3>
-                                        <h4>Virtual</h2>
-                                        <p>This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                        </p>
-                                    </div>        
-                                </div>
-                                <div class="opportunity-card">
-                                    <div class="opportunity-img">
-                                        <img src="images/card-1.jpeg" alt="Organization logo">
-                                    </div>
-                                    <div class="opportunity-description">
-                                        <h2>6.Summer camp for kids with cancer</h2>
-                                        <h3>09 Jul | 12:00AM - 12:30AM</h3>
-                                        <h4>Virtual</h2>
-                                        <p>This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                            This will be the description about the individual opportunity.
-                                        </p>
-                                    </div>        
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
                     <button class="next" onclick="nextSlide()"><span style="font-size: 35px;" >&#10095;</span></button>
                 </div>
+                <button class="view-all-opportunities" onclick="redirectPage('opportunities.html')">View All Opportunities</button>
             </section>
             <section class="call-to-action">
                 <h2>Join us today</h2>
@@ -206,6 +126,37 @@
             </div>
         </footer>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.location.pathname.includes('home.html')) {
+        const opportunityContainer = document.getElementById('opportunitySlide');
+        const opportunityTemplate = document.querySelector('.opportunity-card-template');
+
+        fetch('http://localhost:5000/opportunities')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                data.forEach(opportunity => {
+                    const opportunityCard = opportunityTemplate.cloneNode(true);
+                    opportunityCard.classList.remove('opportunity-card-template');
+                    opportunityCard.style.display = 'block';
+
+                    opportunityCard.querySelector('.opportunity-title').textContent = opportunity.title;
+                    opportunityCard.querySelector('.organization-name').textContent = opportunity.org_id;
+                    opportunityCard.querySelector('.starting-date').textContent = new Date(opportunity.start_date);
+                    opportunityCard.querySelector('.ending-date').textContent = new Date(opportunity.end_date);
+                    opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
+                                        
+                    opportunityContainer.appendChild(opportunityCard)
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching opportunities', error);
+            });
+    }
+
+        });
+    </script>
     <script src="scripts/scripts.js"></script>
 </body>
 </html>

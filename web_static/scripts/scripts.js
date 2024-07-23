@@ -4,11 +4,11 @@ function showSlide(index) {
     
     const slides = document.querySelector('.opportunity-slider .opportunity-slide');
     const totalSlides = slides.children.length;
-    const slideWidth = slides.children[0].offsetWidth + 20; // Including margin
+    const slideWidth = slides.children[1].offsetWidth + 20; // Including margin
 
     
     if (index >= totalSlides) {
-        currentSlide = totalSlides - 1;
+        currentSlide = 0;
     } else if (index < 0) {
         currentSlide = 0;
     } else {
