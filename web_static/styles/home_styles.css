@@ -245,6 +245,12 @@ header{
     color:  rgb(4, 115, 171);
 }
 
+.opportunity-card h5{
+    color: orangered;
+    font-style: italic;
+    font-size: 16px;
+}
+
 .opportunity-details{
     display: none;
     margin-top: 10px;
