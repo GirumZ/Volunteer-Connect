@@ -142,13 +142,13 @@
                             opportunityCard.style.display = 'block';
 
                             // randomly generated pictures
-                            const imageCount = 2;
+                            const imageCount = 9;
                             const imageDirectory = 'images/opp';
                             const imageElement = document.getElementById("opportunity-img");
 
                             const randomIndex = Math.floor(Math.random() * imageCount) + 1;
 
-                            const imageFileName = `image${randomIndex}.jpg`;
+                            const imageFileName = `image${randomIndex}.jpeg`;
 
                             imageElement.src = `${imageDirectory}/${imageFileName}`;
 
