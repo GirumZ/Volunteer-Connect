@@ -72,6 +72,8 @@ function submitSignupForm(event) {
     });
 }
 
+// Images for opportunity card
+
 //---------------sign-in page-----------------
 function submitSigninForm(event) {
     event.preventDefault();
@@ -573,13 +575,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+});
 
+//------------------Filtering opportunities----------------------
 
-    if (window.location.pathname.includes('opportunities.html')) {
+document.addEventListener('DOMContentLoaded', () => {
+
+    function loadOpportunities() {
         const opportunityContainer = document.getElementById('opportunityContainer');
         const opportunityTemplate = document.querySelector('.opportunity-card-template');
 
-        fetch('http://localhost:5000/opportunities')
+        const location = document.querySelector('input[name="location"]').value;
+        const startDate = document.querySelector('input[name="startDate"]').value;
+        const type = document.querySelector('select[name="type"]').value;
+
+        
+
+        if(!opportunityTemplate) {
+            console.error('opportunity template not found')
+        }
+
+        opportunityContainer.innerHTML = '';
+
+        const queryParams = new URLSearchParams();
+        if (location) queryParams.append('location', location);
+        if (startDate) queryParams.append('startDate', startDate);
+        if (type) queryParams.append('type', type);
+
+        fetch(`http://localhost:5000/opportunities?${queryParams.toString()}`)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -610,10 +633,25 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => {
                 console.error('Error fetching opportunities', error);
             });
+
     }
 
+    if (window.location.pathname.includes('opportunities.html')) {
+        loadOpportunities();
+    }
+
+    const filterForm = document.getElementById('filterForm');
+    if (filterForm) {
+        filterForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            loadOpportunities();
+        });
+    }
 });
 
+
+
+//----------------Appliying to opportunity-------------------
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('apply-btn')) {
         const opportunityId = event.target.dataset.opportunityId;
@@ -621,6 +659,13 @@ document.addEventListener('click', (event) => {
         const opportunityTitle = event.target.dataset.opportunityTitle;
         const opportunityDescription = event.target.dataset.opportunityDescription;
         const userData = JSON.parse(localStorage.getItem('userData'));
+        
+        if (!userData) {
+            alert('Please sign in before you can apply')
+            redirectPage('signin.html');
+            return;
+        }
+
         if (userData.__class__ === 'Organization') {
             alert('Organizations can not apply to an opportunity')
         } 
@@ -656,3 +701,5 @@ document.addEventListener('click', (event) => {
 function redirectPage(url) {
     window.location.href = url;
 }
+
+
