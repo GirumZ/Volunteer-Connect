@@ -387,14 +387,14 @@ document.addEventListener('DOMContentLoaded', () => {
         //const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
 
         document.addEventListener('click', (event) =>{
-            if(event.target.classList.contains('view-details-btn')) {
+            if(event.target.classList.contains('show-applicants')) {
                 const postCard = event.target.closest('.post-card');
                 postCard.classList.toggle('expanded');
 
                 if (postCard.classList.contains('expanded')) {
-                    event.target.textContent = 'View Less';
+                    event.target.textContent = 'Hide Applicants';
                 } else {
-                    event.target.textContent = 'View Details';
+                    event.target.textContent = 'View Applicants';
                 }
             }
         });
@@ -412,6 +412,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('show-applicants')) {
+                const postCard = event.target.closest('.post-card');
+                const applicantsContainer = postCard.querySelector('.applicant-container');
+
+                if (!applicantsContainer) {
+                    console.error('Applicants container not found');
+                    return;
+                }
+
+                
+                const header = applicantsContainer.querySelector('.applicant-header');
+                const template = applicantsContainer.querySelector('.applicant-card-template');
+
+                if (!template) {
+                    console.error('Applicant card template not found');
+                    return;
+                }
+
+                applicantsContainer.innerHTML = '';
+                if (header) applicantsContainer.appendChild(header);
+                if (template) applicantsContainer.appendChild(template);
+
+                const postId = event.target.getAttribute('data-post-id');
+
+                // Fetch applicants for the post
+                fetch(`http://localhost:5000/applications/opportunity/${postId}`)
+                    .then(response => response.json())
+                    .then(applicants => {
+                        if (applicants.length > 0) {
+                            applicants.forEach(applicant => {
+                                const applicantCard = template.cloneNode(true);
+                                applicantCard.classList.remove('applicant-card-template');
+                                //applicantCard.style.display = 'block';
+                                applicantCard.querySelector('.applicant-name').textContent = applicant.volunteer_name;
+                                applicantCard.querySelector('.application-date').textContent = new Date(applicant.created_at).toLocaleDateString();
+                                applicantCard.querySelector('.show-profile-btn').setAttribute('data-application-id', applicant.id);
+                                applicantCard.querySelector('.show-profile-btn').setAttribute('data-applicant-id', applicant.volunteer_id);
+                                applicantsContainer.appendChild(applicantCard);
+                            });
+                        } else {
+                            const noApplicantsMessage = document.createElement('p');
+                            noApplicantsMessage.textContent = 'No applicants found.';
+                            applicantsContainer.appendChild(noApplicantsMessage);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching applicants', error);
+                        const errorMessage = document.createElement('p');
+                        errorMessage.textContent = 'Error fetching applicants.';
+                        applicantsContainer.appendChild(errorMessage);
+                    });
+            }
+        });
+
     }
 
     //To load opportunities when the org_dash loads
@@ -435,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     postCard.querySelector('.post-start-date').textContent = new Date(post.start_date);
                     postCard.querySelector('.post-end-date').textContent = new Date(post.end_date);
                     
-                    postCard.querySelector('.post-description').textContent = post.description;
+                    //postCard.querySelector('.post-description').textContent = post.description;
 
                     const showButton = postCard.querySelector('.show-applicants');
                     showButton.setAttribute('data-post-id', post.id);
@@ -671,6 +727,7 @@ document.addEventListener('click', (event) => {
         } 
         if (userData.__class__ === 'Volunteer') {
             const userId = userData.id;
+            const userName = userData.first_name;
             //console.log(opportunityId);
             //console.log(userId);
 
@@ -679,7 +736,7 @@ document.addEventListener('click', (event) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({opportunity_id: opportunityId, org_name: opportunityOrg, opp_title: opportunityTitle, opp_description: opportunityDescription, volunteer_id: userId})
+                body: JSON.stringify({opportunity_id: opportunityId, org_name: opportunityOrg, opp_title: opportunityTitle, opp_description: opportunityDescription, volunteer_id: userId, volunteer_name: userName})
             })
             .then(response => {
                 if (response.ok) {
@@ -703,3 +760,124 @@ function redirectPage(url) {
 }
 
 
+// organization dash, volunteer profile view
+
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.location.pathname.includes('org_dash.html')) {
+        document.body.addEventListener('click', async (event) => {
+            if (event.target.classList.contains('show-profile-btn')) {
+                console.log('Button clicked');
+                const volunteerId = event.target.getAttribute('data-applicant-id');
+                const applicationId = event.target.getAttribute('data-application-id');
+                
+                try {
+                    const response = await fetch(`http://localhost:5000/volunteers/${volunteerId}`);
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    
+                    const profile = await response.json();
+                    console.log('Profile fetched:', profile);
+                    
+                    showProfilePopup(profile, applicationId);
+                } catch (error) {
+                    console.error('Error fetching profile:', error);
+                    alert('An error occurred while fetching the profile.');
+                }
+            }
+        });
+    }
+});
+
+function showProfilePopup(profile, applicationId) {
+    const popup = document.createElement('div');
+    popup.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        ">
+            <h2>${profile.first_name} ${profile.last_name}</h2>
+            <p><strong>Gender:</strong> ${profile.gender}</p>
+            <p><strong>Date of Birth:</strong> ${profile.date_of_birth}</p>
+            <p><strong>Phone Number:</strong> ${profile.phone_number}</p>
+            <p><strong>Location:</strong> ${profile.location}</p>
+            <p><strong>Skills:</strong> ${profile.skills.join(', ')}</p>
+            <p><strong>Interests:</strong> ${profile.interests.join(', ')}</p>
+            <p><strong>Availability:</strong> ${profile.availability}</p>
+            <p><strong>Bio:</strong> ${profile.bio}</p>
+            <button style="
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: #f00;
+                color: #fff;
+                border: none;
+                padding: 5px 10px;
+                cursor: pointer;
+            ">Close</button>
+            <div style="
+                margin-top: 20px;
+                text-align: center;
+            ">
+                <button class="accept-btn" style="
+                    background: #0f0;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                ">Accept</button>
+                <button class="reject-btn" style="
+                    background: #f00;
+                    color: #fff;
+                    border: none;
+                    padding: 10px 20px;
+                    cursor: pointer;
+                ">Reject</button>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(popup);
+    
+    popup.querySelector('button').addEventListener('click', () => {
+        document.body.removeChild(popup);
+    });
+
+    // Add event listeners for Accept and Reject buttons
+    popup.querySelector('.accept-btn').addEventListener('click', () => {
+        updateApplicationStatus(applicationId, 'Accepted');
+        document.body.removeChild(popup);
+    });
+
+    popup.querySelector('.reject-btn').addEventListener('click', () => {
+        updateApplicationStatus(applicationId, 'Rejected');
+        document.body.removeChild(popup);
+    });
+}
+
+async function updateApplicationStatus(applicationId, status) {
+    try {
+        const response = await fetch(`http://localhost:5000/applications/${applicationId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status: status }),
+        });
+
+        if (!response.ok) throw new Error('Network response was not ok');
+        
+        const result = await response.json();
+        console.log('Application status updated:', result);
+        alert(`Application ${status}`);
+    } catch (error) {
+        console.error('Error updating application status:', error);
+        alert('An error occurred while updating the application status.');
+    }
+}
