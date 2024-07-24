@@ -8,6 +8,7 @@ class Application(BaseModel, db.Model):
 
     volunteer_id = db.Column(db.String(36), db.ForeignKey('volunteers.id'), nullable=False)
     opportunity_id = db.Column(db.String(36), db.ForeignKey('opportunities.id'), nullable=False)
+    volunteer_name = db.Column(db.String(128), db.ForeignKey('volunteers.first_name'))
     org_id = db.Column(db.String(36), db.ForeignKey('opportunities.org_id'))
     org_name = db.Column(db.String(128), db.ForeignKey('opportunities.org_name'))
     opp_title = db.Column(db.String(150), db.ForeignKey('opportunities.title'))

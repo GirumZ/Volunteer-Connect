@@ -8,7 +8,7 @@ class Volunteer(User, db.Model):
     __tablename__ = 'volunteers'
 
     id = db.Column(db.String(36), db.ForeignKey('users.id'), primary_key=True)
-    first_name = db.Column(db.String(128), nullable=False)
+    first_name = db.Column(db.String(128), nullable=False, index=True)
     last_name = db.Column(db.String(128), nullable=False)
     gender = db.Column(db.String(10), nullable=True)
     date_of_birth = db.Column(db.Date, nullable=True)
