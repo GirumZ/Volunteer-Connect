@@ -33,18 +33,11 @@
                     <h2>Filter Opportunities</h2>
                     <form id="filterForm">
                         <div class="filter-group">
-                            <label for="location">Location</label>
-                            <select name="location" id="location">
-                                <option value="Addis Ababa">Addis Ababa</option>
-                                <option value="Bahir Dar">Bahir Dar</option>
-                                <option value="Mekele">Mekele</option>
-                                <option value="Adama">Adama</option>
-                            </select>
+                            <label>Location<input type="text" id="location" name="location"></label>
                         </div>
                         <div class="filter-group">
-                            <label> Date range: 
+                            <label> Starting Date: 
                                 <input type="date" name="startDate" id="startDate">
-                                <input type="date" name="endDate" id="endDate">
                             </label>    
                         </div>
                         <div class="filter-group">
@@ -55,27 +48,27 @@
                                 <option value="remote">Remote</option>
                             </select>
                         </div>
-                        <button type="button" onclick="applyFilters()">Apply Filters</button>
+                        <button type="submit">Apply Filters</button>
                     </form>
                 </div>
-
+                <div class="opportunity-card opportunity-card-template">
+                    <h3 class="opportunity-title">Opportunity Title</h3>
+                    <h5 class="organization-name">Organization Name</h5>
+                    <p><strong>Starting Date: </strong><span class="starting-date"> Jan 16 2024</span></p>
+                    <p><strong>Ending Date: </strong><span class="ending-date"> Jan 16 2024</span></p>
+                    <p><strong>Type: </strong><span class="opportunity-type"> On site</span></p>
+                    <div class="opportunity-details">
+                        <p><strong>Description: </strong><span class="opportunity-description">Description goes here</span></p>
+                        <p><strong>Skills Needed: </strong> <span class="skills-needed">skill requirments will go here</span></p>
+                        <p><strong>Interest Areas: </strong> <span class="interest-needed">interest areas for the opportunity</span></p>
+                        <p><strong>Location: </strong> <span class="location">location</span></p>
+                        <button class="apply-btn">Apply</button>
+                    </div>
+                    <button class="view-details-btn">View Details</button>
+                </div>
                 <div class="opportunities-section" id="opportunityContainer">
                     <h2>Opportunities</h2>
-                    <div class="opportunity-card opportunity-card-template">
-                        <h3 class="opportunity-title">Opportunity Title</h3>
-                        <h5 class="organization-name">Organization Name</h5>
-                        <p><strong>Starting Date: </strong><span class="starting-date"> Jan 16 2024</span></p>
-                        <p><strong>Ending Date: </strong><span class="ending-date"> Jan 16 2024</span></p>
-                        <p><strong>Type:</strong><span class="opportunity-type"> On site</span></p>
-                        <div class="opportunity-details">
-                            <p><strong>Description: </strong><span class="opportunity-description">Description goes here</span></p>
-                            <p><strong>Skills Needed: </strong> <span class="skills-needed">skill requirments will go here</span></p>
-                            <p><strong>Interest Areas: </strong> <span class="interest-needed">interest areas for the opportunity</span>interest areas for the opportunity</p>
-                            <p><strong>Location: </strong> <span class="location">location</span></p>
-                            <button class="apply-btn">Apply</button>
-                        </div>
-                        <button class="view-details-btn">View Details</button>
-                    </div>
+                    
                 </div>
             </div>
         </main>

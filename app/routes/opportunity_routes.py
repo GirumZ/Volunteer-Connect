@@ -4,6 +4,7 @@ from flask import Blueprint, request, jsonify
 from flask_cors import cross_origin
 from app.models.opportunity import Opportunity
 from app import db
+from sqlalchemy import or_
 
 
 bp = Blueprint('opportunities', __name__, url_prefix='/opportunities')
@@ -22,7 +23,22 @@ def create_opportunity():
 @cross_origin()
 def get_opportunities():
     """Returns all the opportunities"""
-    opportunities = Opportunity.query.all()
+    location = request.args.get('location')
+    start_date = request.args.get('startDate')
+    opp_type = request.args.get('type')
+    
+    query = db.session.query(Opportunity)
+
+    if location:
+        query = query.filter(Opportunity.location.ilike(f'%{location}%'))
+    if start_date:
+        query = query.filter(Opportunity.start_date >= start_date)
+    if opp_type and opp_type != 'all':
+        query = query.filter(Opportunity.opp_type == opp_type)
+    elif opp_type == 'all':
+        query = query.filter(or_(Opportunity.opp_type == 'on-site', Opportunity.opp_type == 'remote'))
+
+    opportunities = query.all()
     return jsonify([opportunity.to_dict() for opportunity in opportunities])
 
 @bp.route('/<string:id>', methods=['GET'], strict_slashes=False)
