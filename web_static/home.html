@@ -46,7 +46,7 @@
                         <div class="opportunity-slider">
                             <div class="opportunity-slide" id="opportunitySlide">
                                 <div class="opportunity-card opportunity-card-template">
-                                    <div><img class="opportunity-img" src="images/card-2.jpg" alt="opportunity-img"></div>
+                                    <div><img class="opportunity-img" id="opportunity-img" src="images/opp/card-1.jpeg" alt="opportunity-img"></div>
                                     <h3 class="opportunity-title">Opportunity Title</h3>
                                     <h5 class="organization-name">Organization Name</h5>
                                     <p><strong>Starting Date: </strong><span class="starting-date"> Jan 16 2024</span></p>
@@ -129,31 +129,45 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             if (window.location.pathname.includes('home.html')) {
-        const opportunityContainer = document.getElementById('opportunitySlide');
-        const opportunityTemplate = document.querySelector('.opportunity-card-template');
+                const opportunityContainer = document.getElementById('opportunitySlide');
+                const opportunityTemplate = document.querySelector('.opportunity-card-template');
 
-        fetch('http://localhost:5000/opportunities')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                data.forEach(opportunity => {
-                    const opportunityCard = opportunityTemplate.cloneNode(true);
-                    opportunityCard.classList.remove('opportunity-card-template');
-                    opportunityCard.style.display = 'block';
+                fetch('http://localhost:5000/opportunities')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        data.forEach(opportunity => {
+                            const opportunityCard = opportunityTemplate.cloneNode(true);
+                            opportunityCard.classList.remove('opportunity-card-template');
+                            opportunityCard.style.display = 'block';
 
-                    opportunityCard.querySelector('.opportunity-title').textContent = opportunity.title;
-                    opportunityCard.querySelector('.organization-name').textContent = opportunity.org_name;
-                    opportunityCard.querySelector('.starting-date').textContent = new Date(opportunity.start_date);
-                    opportunityCard.querySelector('.ending-date').textContent = new Date(opportunity.end_date);
-                    opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
-                                        
-                    opportunityContainer.appendChild(opportunityCard)
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching opportunities', error);
-            });
-    }
+                            // randomly generated pictures
+                            const imageCount = 2;
+                            const imageDirectory = 'images/opp';
+                            const imageElement = document.getElementById("opportunity-img");
+
+                            const randomIndex = Math.floor(Math.random() * imageCount) + 1;
+
+                            const imageFileName = `image${randomIndex}.jpg`;
+
+                            imageElement.src = `${imageDirectory}/${imageFileName}`;
+
+                            
+
+                            opportunityCard.querySelector('.opportunity-title').textContent = opportunity.title;
+                            opportunityCard.querySelector('.organization-name').textContent = opportunity.org_name;
+                            opportunityCard.querySelector('.starting-date').textContent = new Date(opportunity.start_date);
+                            opportunityCard.querySelector('.ending-date').textContent = new Date(opportunity.end_date);
+                            opportunityCard.querySelector('.opportunity-type').textContent = opportunity.opp_type;
+                            
+                            opportunityContainer.appendChild(opportunityCard);
+                    
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching opportunities', error);
+                    });
+            }
 
         });
     </script>
